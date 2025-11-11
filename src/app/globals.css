@@ -1,0 +1,169 @@
+:root {
+	--brand-secondary: #192bc2;
+	--border-disabled-color: #d9d6e3;
+	--brand: #0f0051;
+	--white: #fff;
+	--background: #fcfcfd;
+	--black: #000;
+	--black-stroke: #fff;
+	--secondary: #6e6a84;
+	--red: #e02424;
+}
+:root {
+	--font-family: "Inter", sans-serif;
+	--second-family: "Merriweather", sans-serif;
+}
+
+html,
+body {
+	max-width: 100dvw;
+	height: 100%;
+	overflow-x: hidden;
+}
+
+body {
+	color: var(--black);
+	background: var(--white);
+}
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	/* width: 100%; */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+	margin: 0;
+}
+
+p {
+	font-family: var(--font-family);
+	font-weight: 400;
+	font-size: 14px;
+	color: var(--black);
+}
+
+p:last-child {
+	margin-bottom: 0;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+a {
+	color: currentColor;
+	text-decoration: none;
+}
+
+address {
+	font-style: normal;
+}
+
+button {
+	cursor: pointer;
+	border: none;
+	background: none;
+}
+
+/* .button {
+	display: flex;
+	height: 50px;
+	padding: 10px;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	flex: 1 0 0;
+	border-radius: 100px;
+	background: var(--accent_orange, #fed55e);
+	box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.15) inset;
+}
+
+.button:hover,
+.button:focus {
+	background: var(--button-active);
+} */
+
+input {
+	outline: transparent;
+}
+
+textarea {
+	outline: transparent;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+.title {
+	font-weight: 600;
+	font-size: 32px;
+	line-height: 1;
+	letter-spacing: -0.02em;
+	color: #0c0c0c;
+}
+
+.container {
+	min-width: 100%;
+	padding-left: 16px;
+	padding-right: 16px;
+	margin: 0 auto;
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	border: 0;
+	padding: 0;
+	white-space: nowrap;
+	clip-path: inset(100%);
+	clip: rect(0 0 0 0);
+	overflow: hidden;
+}
+
+@media screen and (min-width: 768px) {
+	.container {
+		max-width: 1279px;
+		padding: 0 24px;
+	}
+
+	.title {
+		font-size: 48px;
+		line-height: 0.92;
+	}
+
+	.p {
+		font-size: 16px;
+		line-height: 1.25;
+	}
+}
+
+@media screen and (min-width: 1280px) {
+	.container {
+		max-width: 1600px;
+		padding: 0 64px;
+	}
+}
+
+html {
+	scroll-behavior: smooth;
+	scroll-padding-top: 50px;
+}
+
+.no-scroll {
+	overflow: hidden;
+}
