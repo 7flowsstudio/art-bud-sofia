@@ -1,0 +1,55 @@
+.containerBlock {
+  background-color: var(--white);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  max-width: 343px;
+  padding-right: 8px;
+  gap: 12px;
+}
+.imgBlock {
+  border-radius: 8px;
+}
+.text {
+  font-size: 12px;
+  letter-spacing: -0.03em;
+}
+.btnBlock {
+  background-color: var(--brand);
+  color: var(--white);
+  border-radius: 8px;
+  padding: 12px;
+  min-width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (max-width: 767px) {
+  .btnDesc {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .containerBlock {
+    padding: 12px;
+    flex-direction: column;
+    max-width: 328px;
+    gap: 20px;
+  }
+  .imgBlock {
+    width: 304px;
+    height: 230px;
+  }
+  .text {
+    font-size: 14px;
+  }
+  .btnBlock {
+    width: 304px;
+    height: 50px;
+  }
+  .btnMob {
+    display: none;
+  }
+}
