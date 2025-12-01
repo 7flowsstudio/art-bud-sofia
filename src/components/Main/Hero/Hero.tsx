@@ -5,8 +5,18 @@ import Block from "./Block/Block";
 const Hero = () => {
   return (
     <div className={s.container}>
-      <Block />
-      <h1>NIEZAWODNE REMONTU OD PROFESJONALISTY W TWOIM MIEŚCIE</h1>
+      <div className={s.block}>
+        <Block />
+      </div>
+      <div className={s.wrappTitle}>
+        <h1 className={s.title}>
+          NIEZAWODNE REMONTU OD PROFESJONALISTY W TWOIM MIEŚCIE
+        </h1>
+        <div className={s.wrappText}>
+          <p>Wszystko od drobnych napraw po kompleksowe remonty domów</p>
+          <button className={s.btn}>Wyświetl usługi</button>
+        </div>
+      </div>
     </div>
   );
 };
