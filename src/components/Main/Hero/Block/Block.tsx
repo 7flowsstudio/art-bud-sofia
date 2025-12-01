@@ -12,7 +12,9 @@ const Block = () => {
         height={64}
         className={s.imgBlock}
       />
-      <p>Jednym zarządem – gwarancja jakości bez kompromisów.</p>
+      <p className={s.text}>
+        Jednym zarządem – gwarancja jakości bez kompromisów.
+      </p>
       <button className={s.btnBlock}>
         <span className={s.btnMob}>
           <Image src="/img/hero/arrow.svg" alt="icon" width={16} height={16} />
