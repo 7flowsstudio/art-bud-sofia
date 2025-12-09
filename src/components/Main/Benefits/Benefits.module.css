@@ -1,0 +1,41 @@
+.container {
+  padding: 16px;
+}
+.cards {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 10px;
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+.card {
+  /* flex: 0 0 50%; */
+  scroll-snap-align: start;
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid #d9d6e3;
+}
+
+.cards {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.cards::-webkit-scrollbar {
+  display: none;
+}
+
+@media screen and (min-width: 1200px) {
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    overflow: visible;
+  }
+
+  .card {
+    flex: none;
+  }
+}
