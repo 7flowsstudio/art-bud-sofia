@@ -1,5 +1,5 @@
 .section {
-  padding-top: 72px;
+  padding-top: 56px;
 }
 .container {
   padding: 16px;
@@ -54,7 +54,7 @@
     padding-top: 120px;
   }
   .container {
-    padding: 34px;
+    padding: 0;
     align-items: center;
     justify-content: center;
     gap: 50px;
