@@ -1,10 +1,7 @@
-/** @type {import('next').NextConfig} */
-process.env.NEXT_PRIVATE_BUILD_WEBPACK = "1";
+import type { NextConfig } from "next";
 
-const nextConfig = {
-	experimental: {
-		webpackBuildWorker: true,
-	},
+const nextConfig: NextConfig = {
+	/* config options here */
 };
 
-module.exports = nextConfig;
+export default nextConfig;
