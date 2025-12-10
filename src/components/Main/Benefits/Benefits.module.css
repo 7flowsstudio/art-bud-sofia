@@ -1,21 +1,35 @@
+.section {
+  padding-top: 120px;
+}
 .container {
   padding: 16px;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+}
+.wrappList {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding-top: 40px;
 }
 .cards {
   display: flex;
   gap: 20px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  padding: 10px;
+  /* padding: 10px; */
   list-style: none;
-  margin: 0;
-  padding-left: 0;
+  margin: 0 auto;
+  /* padding-left: 0; */
 }
 .card {
-  /* flex: 0 0 50%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 90vw;
   scroll-snap-align: start;
   border-radius: 16px;
-  padding: 20px;
+  padding: 24px;
   border: 1px solid #d9d6e3;
 }
 
@@ -26,16 +40,48 @@
 .cards::-webkit-scrollbar {
   display: none;
 }
-
-@media screen and (min-width: 1200px) {
+.titleCard {
+  font-size: 24px;
+  font-family: var(--second-family);
+  padding-top: 24px;
+  padding-bottom: 14px;
+}
+.textCard {
+  text-align: center;
+  font-size: 16px;
+  font-family: var(--font-family);
+}
+@media screen and (min-width: 768px) {
+  .section {
+    padding-top: 135px;
+  }
   .cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
+    row-gap: 20px;
+    column-gap: 20px;
     overflow: visible;
   }
 
   .card {
     flex: none;
+    min-width: 0;
+    max-width: 502px;
+  }
+  .textCard {
+    font-size: clamp(16px, calc((16 / 375) * 100vw), calc((20 / 1280) * 100vw));
+  }
+}
+@media screen and (min-width: 1280px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .title {
+    max-width: 380px;
+  }
+  .textCard {
+    font-size: 20px;
   }
 }
