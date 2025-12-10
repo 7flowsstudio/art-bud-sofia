@@ -8,6 +8,8 @@
   gap: 12px;
 }
 .imgBlock {
+  width: 77px;
+  height: 64px;
   border-radius: 8px;
   margin-left: -2px;
 }
