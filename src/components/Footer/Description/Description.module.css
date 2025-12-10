@@ -1,0 +1,19 @@
+.description {
+	width: 100%;
+	/* aspect-ratio: 387 / 215; */
+	/* height: 215px; */
+	color: var(--black);
+
+	font-family: var(--second-family);
+	font-size: clamp(32px, calc((32 / 768) * 100vw), calc((36 / 1280) * 100vw));
+	font-weight: 700;
+	line-height: 120%;
+	letter-spacing: -4%;
+	text-align: left;
+}
+@media screen and (min-width: 768px) {
+	.description {
+		width: 100%;
+		max-width: 387px;
+	}
+}
