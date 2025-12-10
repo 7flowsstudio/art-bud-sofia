@@ -1,6 +1,6 @@
 .section {
   background-color: var(--brand-secondary);
-  padding-top: 120px;
+  /* padding-top: 120px; */
 }
 .container {
   padding: 40px 16px;
