@@ -1,0 +1,22 @@
+.section {
+  background-color: var(--brand-secondary);
+}
+.container {
+  padding: 40px 16px;
+}
+.titleCall {
+  color: var(--white);
+  line-height: 1.1;
+  /* display: inline-flex;
+  align-items: center;
+  gap: 8px; */
+}
+.imgWrapper {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 0;
+}
+.imgCall {
+  display: inline-block;
+  vertical-align: middle;
+}
