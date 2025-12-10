@@ -6,10 +6,10 @@ const Block = () => {
   return (
     <div className={s.containerBlock}>
       <Image
-        src="/img/hero/photo_b.png"
+        src="/img/hero/photo_block.png"
         alt="work"
-        width={77}
-        height={64}
+        width={304}
+        height={230}
         className={s.imgBlock}
       />
       <p className={s.text}>
