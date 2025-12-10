@@ -1,0 +1,22 @@
+.LogoMob {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	aspect-ratio: 355 / 77;
+}
+.logoTitle,
+.logoTitleSpan {
+	font-family: var(--second-family);
+	color: var(--brand-secondary);
+}
+.logoTitle {
+	font-weight: 700;
+	font-size: clamp(61px, calc((61 / 375) * 100vw), 125px);
+	white-space: nowrap;
+}
+.logoTitleSpan {
+	font-style: italic;
+	font-weight: 400;
+	font-size: clamp(39px, calc((39 / 375) * 100vw), 80px);
+}

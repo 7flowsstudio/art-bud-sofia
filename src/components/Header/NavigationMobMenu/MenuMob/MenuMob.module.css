@@ -1,0 +1,16 @@
+.mobMenuList {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: 24px;
+}
+.mobMenuItem {
+	font-family: var(--second-family);
+	font-weight: 500;
+	font-size: 24px;
+	line-height: 120%;
+	letter-spacing: -0.02em;
+	color: var(--white);
+	cursor: pointer;
+}
