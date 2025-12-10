@@ -6,7 +6,7 @@ const Block = () => {
   return (
     <div className={s.containerBlock}>
       <Image
-        src="/img/hero/photo_block.png"
+        src="/img/hero/photo_b.png"
         alt="work"
         width={77}
         height={64}

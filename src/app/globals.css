@@ -45,6 +45,11 @@ p {
 h1 {
 	color: var(--white);
 }
+h2 {
+	font-family: var(--second-family);
+	font-size: clamp(32px, calc((32 / 375) * 100vw), calc((40 / 1280) * 100vw));
+	text-align: center;
+}
 p {
 	font-family: var(--font-family);
 	font-weight: 400;
@@ -155,8 +160,8 @@ img {
 
 @media screen and (min-width: 1280px) {
 	.container {
-		max-width: 1440px;
-		padding: 0 34px;
+		max-width: 1600px;
+		padding: 0 64px;
 	}
 }
 
