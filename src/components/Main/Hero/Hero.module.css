@@ -12,82 +12,82 @@
   }
 } */
 .container {
-  padding: 16px;
+	padding: 16px;
 }
 .block {
-  display: flex;
-  justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 .wrappTitle {
-  padding-top: 185px;
-  display: flex;
-  flex-direction: column;
-  gap: 120px;
+	padding-top: 185px;
+	display: flex;
+	flex-direction: column;
+	gap: 120px;
 }
 .wrappText {
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  max-width: 191px;
-  gap: 16px;
+	display: flex;
+	flex-direction: column;
+	justify-content: end;
+	max-width: 191px;
+	gap: 16px;
 }
 .wrappText p {
-  color: var(--white);
+	color: var(--white);
 }
 .title {
-  /* padding-top: 185px; */
-  /* max-width: 343px; */
-  font-family: var(--second-family);
-  font-size: clamp(32px, calc((32 / 375) * 100vw), calc((70 / 1280) * 100vw));
+	/* padding-top: 185px; */
+	/* max-width: 343px; */
+	font-family: var(--second-family);
+	font-size: clamp(32px, calc((32 / 375) * 100vw), calc((70 / 1280) * 100vw));
 }
 .btn {
-  background-color: var(--white);
-  border: 1px solid #0f0051;
-  border-radius: 8px;
-  padding: 12px;
-  width: 100%;
+	background-color: var(--white);
+	border: 1px solid #0f0051;
+	border-radius: 8px;
+	padding: 12px;
+	width: 100%;
 }
 @media screen and (max-width: 767px) {
-  .title {
-    max-width: 343px;
-  }
+	.title {
+		max-width: 343px;
+	}
 }
 @media screen and (min-width: 768px) {
-  .container {
-    padding: 34px;
-  }
-  .block {
-    justify-content: end;
-    padding-top: 57px;
-    /* padding-right: 34px; */
-  }
-  .wrappTitle {
-    padding-top: 16px;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 24px;
-  }
-  .title {
-    /* padding-top: 16px; */
-    /* max-width: 520px; */
-  }
-  .wrappText p {
-    font-size: 16px;
-  }
-  .wrappText {
-    gap: 24px;
-    /* padding-right: 12px; */
-  }
+	.container {
+		padding: 34px;
+	}
+	.block {
+		justify-content: end;
+		padding-top: 57px;
+		/* padding-right: 34px; */
+	}
+	.wrappTitle {
+		padding-top: 16px;
+		flex-direction: row;
+		justify-content: space-between;
+		gap: 24px;
+	}
+	.title {
+		/* padding-top: 16px; */
+		/* max-width: 520px; */
+	}
+	.wrappText p {
+		font-size: 16px;
+	}
+	.wrappText {
+		gap: 24px;
+		/* padding-right: 12px; */
+	}
 }
 @media screen and (min-width: 920px) {
-  .wrappText {
-    max-width: 304px;
-    padding-right: 12px;
-  }
+	.wrappText {
+		max-width: 304px;
+		padding-right: 12px;
+	}
 }
 @media screen and (min-width: 1270px) {
-  .title {
-    max-width: 876px;
-    font-size: 70px;
-  }
+	.title {
+		max-width: 876px;
+		font-size: 70px;
+	}
 }

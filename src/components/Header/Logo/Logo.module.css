@@ -1,0 +1,18 @@
+.logo,
+.logoSpan {
+	color: var(--white);
+	font-family: var(--second-family);
+	letter-spacing: 0%;
+	text-align: left;
+}
+.logo {
+	font-size: clamp(24px, calc((42 / 768) * 100vw), 42px);
+	font-weight: 700;
+	line-height: clamp(30px, calc((52 / 768) * 100vw), 52px);
+}
+.logoSpan {
+	font-style: italic;
+	font-size: clamp(16px, calc((28 / 768) * 100vw), 28px);
+	font-weight: 400;
+	line-height: clamp(19px, calc((33 / 768) * 100vw), 33px);
+}
