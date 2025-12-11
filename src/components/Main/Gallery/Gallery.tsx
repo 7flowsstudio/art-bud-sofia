@@ -1,7 +1,8 @@
 import React from "react";
+import GallerySwiper from "./GallerySwiper/GallerySwiper";
 
 const Gallery = () => {
-	return <div>Gallery</div>;
+	return <GallerySwiper />;
 };
 
 export default Gallery;
