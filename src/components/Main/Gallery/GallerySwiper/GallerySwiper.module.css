@@ -68,6 +68,24 @@
 	stroke: var(--black);
 	fill: none;
 	transform: rotate(-90deg);
+	transition: transform 0.15s ease; /* плавність */
+}
+.navButton:hover .navButton_icon {
+	stroke: var(--border-disabled-color);
+}
+/* Анімація при натисканні */
+/* Додатковий клас для правої кнопки */
+.right {
+	transform: rotate(90deg); /* наприклад, для правої кнопки, замінює базовий */
+}
+
+/* Ефект збільшення при натисканні для всіх іконок */
+.navButton:active .navButton_icon {
+	transform: scale(0.7) rotate(-90deg); /* для лівої кнопки */
+}
+
+.navButton:active .navButton_icon.right {
+	transform: scale(0.7) rotate(90deg); /* для правої кнопки */
 }
 
 .right {
