@@ -46,6 +46,9 @@
 }
 
 @media screen and (min-width: 768px) {
+	.menuHead {
+		display: none;
+	}
 	.navigation {
 		height: 76px;
 		padding-top: 0;
