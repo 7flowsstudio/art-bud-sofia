@@ -1,0 +1,17 @@
+.container {
+	background-image: url("/img/hero/photo.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	min-height: 647px;
+	height: 700px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+@media screen and (min-width: 768px) {
+	.container {
+		min-height: 700px;
+	}
+}
