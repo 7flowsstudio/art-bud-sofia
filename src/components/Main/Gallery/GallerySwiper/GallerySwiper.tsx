@@ -1,15 +1,26 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import s from "./GallerySwiper.module.css";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 
 import "swiper/css";
 import "swiper/css/navigation";
-import "swiper/css/pagination";
 import SlideItem from "./SlideItem/SlideItem";
 
 const GallerySwiper = () => {
+	const [width, setWidth] = useState(
+		typeof window !== "undefined" ? window.innerWidth : 0
+	);
+
+	useEffect(() => {
+		const handleResize = () => setWidth(window.innerWidth);
+		window.addEventListener("resize", handleResize);
+		return () => window.removeEventListener("resize", handleResize);
+	}, []);
+
+	const autoHeightValue = width < 1280;
+
 	const media = [
 		"/img/gallery/img_1.webp",
 		"/img/gallery/img_2.webp",
@@ -18,6 +29,8 @@ const GallerySwiper = () => {
 		"/img/gallery/img_2.webp",
 		"/img/gallery/img_3.webp",
 	];
+
+	const widths = ["slide25", "slide30", "slide45"];
 
 	return (
 		<div id="SliderGallery" className={s.gallerySwiper}>
@@ -39,27 +52,43 @@ const GallerySwiper = () => {
 						</button>
 					</div>
 				</div>
+
 				<Swiper
 					className={s.swiper}
 					navigation={{
 						nextEl: ".gallery-next",
 						prevEl: ".gallery-prev",
 					}}
-					modules={[Pagination, Navigation]}
-					autoHeight={true}
+					modules={[Navigation]}
+					autoHeight={autoHeightValue}
 					loop={true}
+					slidesPerView="auto"
+					spaceBetween={24}
 					breakpoints={{
-						320: { slidesPerView: 1, spaceBetween: 4 },
-						768: { slidesPerView: 1, spaceBetween: 4 },
-						1280: { slidesPerView: 2, spaceBetween: 24 },
+						320: {
+							slidesPerView: 1,
+							spaceBetween: 6,
+						},
+						768: {
+							slidesPerView: 2,
+							spaceBetween: 10,
+						},
+						1280: {
+							slidesPerView: "auto",
+							spaceBetween: 20,
+						},
 					}}
 				>
 					{media.map((item, index) => (
-						<SwiperSlide key={index} className={s.slide}>
+						<SwiperSlide
+							key={index}
+							className={`${s.slide} ${s[widths[index % 3]]}`}
+						>
 							<SlideItem item={item} />
 						</SwiperSlide>
 					))}
 				</Swiper>
+
 				<div className={s.mobPagination}>
 					<button type="button" className={`gallery-prev ${s.navButton}`}>
 						<svg className={s.navButton_icon}>
