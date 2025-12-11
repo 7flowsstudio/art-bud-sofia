@@ -5,11 +5,13 @@ import Description from "./Description/Description";
 import ListStacks from "./ListStacks/ListStacks";
 import ListInfo from "./ListInfo/ListInfo";
 import ListSocial from "./ListSocial/ListSocial";
+import ButtonOnTop from "./ButtonOnTop/ButtonOnTop";
 const Footer = () => {
 	return (
 		<div className={s.sectionFooter}>
 			<div className={`container`}>
 				<div className={s.footer}>
+					<ButtonOnTop />
 					<div className={s.content}>
 						<div className={s.logoPhrase}>
 							<LogoFooter />
