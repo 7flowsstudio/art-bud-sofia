@@ -1,5 +1,18 @@
 import * as Yup from "yup";
 
+const passwordRules = /^[a-zA-Z0-9]+$/;
+export const validationSchemaRegister = () => {
+	return Yup.object({
+		email: Yup.string()
+			.email("Не коректний Email!")
+			.required("Введіть коректный email!"),
+		password: Yup.string()
+			.matches(passwordRules, "Тільки латинські літери і цифри!")
+			.min(5, "Мінімум 5 символів!")
+			.required("Обовязково!"),
+	});
+};
+
 export const ValidationSchemaCallback = Yup.object().shape({
 	name: Yup.string()
 		.required("Wpisz nazwę. To konieczność!")

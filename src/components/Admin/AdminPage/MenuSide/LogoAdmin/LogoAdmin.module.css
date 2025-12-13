@@ -1,0 +1,23 @@
+.titleLogo {
+	color: var(--brand);
+
+	font-family: var(--second-family);
+	font-size: 38px;
+	font-weight: 700;
+	line-height: 48px;
+	letter-spacing: 0%;
+	text-align: left;
+}
+.titleSpan {
+	color: var(--brand);
+
+	font-family: var(--second-family);
+	font-style: italic;
+	font-size: 24px;
+	font-weight: 400;
+	line-height: 32px;
+	letter-spacing: 0%;
+	text-align: left;
+	margin-left: 3px;
+	margin-right: 3px;
+}

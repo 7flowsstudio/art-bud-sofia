@@ -1,0 +1,15 @@
+.optionSideWrapper {
+	width: 100%;
+	height: 800px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 40px;
+	padding: 24px;
+
+	box-sizing: border-box;
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	border-radius: 24px;
+	background: rgba(255, 255, 255, 1);
+}
