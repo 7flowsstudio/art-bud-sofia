@@ -1,89 +1,122 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import s from "./Authorization.module.css";
+import {
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from "firebase/auth";
+import { auth } from "../../../../firebaseConfig";
+import { useRouter } from "next/navigation";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { validationSchemaRegister } from "@/data/validationSchema";
 
 type AuthProps = {
-	email: string;
-	password: string;
+  email: string;
+  password: string;
 };
 
 const Authorization = () => {
-	const [isVisual, setIsVisual] = useState(false);
-	useEffect(() => {
-		setTimeout(() => {
-			setIsVisual(true);
-		}, 500);
-	}, []);
-	const initialValues: AuthProps = {
-		email: "",
-		password: "",
-	};
+  const [isVisual, setIsVisual] = useState(false);
+  const router = useRouter();
 
-	const hundlerAuth = (value: AuthProps) => {
-		const authData = {
-			email: value.email,
-			password: value.password,
-		};
-		console.log("DATA", authData);
-	};
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisual(true), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
-	return (
-		<>
-			{isVisual && (
-				<div className={s.authWrapper}>
-					<div className={s.authBlock}>
-						<h3 className={s.title}>Авторизація</h3>
-						<Formik
-							initialValues={initialValues}
-							validationSchema={validationSchemaRegister}
-							onSubmit={hundlerAuth}
-						>
-							<Form className={s.form}>
-								<div className={s.inputWrapper}>
-									<label className={s.label}>
-										<Field
-											type="email"
-											name="email"
-											placeholder="Логін"
-											className={s.input}
-										/>
-										<ErrorMessage
-											name="email"
-											component="p"
-											className={s.error}
-										/>
-									</label>
-									<label className={s.label}>
-										<Field
-											type="password"
-											name="password"
-											autoComplete="new-password"
-											placeholder="Пароль"
-											className={s.input}
-										/>
-										<ErrorMessage
-											name="password"
-											component="p"
-											className={s.error}
-										/>
-									</label>
+  const initialValues: AuthProps = {
+    email: "",
+    password: "",
+  };
 
-									<button type="button" className={s.btnRestore}>
-										Відновити пароль
-									</button>
-								</div>
-								<button type="submit" className={s.btnEnter}>
-									Увійти
-								</button>
-							</Form>
-						</Formik>
-					</div>
-				</div>
-			)}
-		</>
-	);
+  const hundlerAuth = async (value: AuthProps) => {
+    try {
+      await signInWithEmailAndPassword(auth, value.email, value.password);
+
+      router.push("/admin");
+    } catch (error: unknown) {
+      alert("Невірний логін або пароль");
+      console.error(error);
+    }
+  };
+  const handleResetPassword = async (email: string) => {
+    if (!email) {
+      alert("Введи email для відновлення пароля");
+      return;
+    }
+
+    try {
+      await sendPasswordResetEmail(auth, email);
+      alert("Лист для відновлення пароля надіслано");
+    } catch (error) {
+      alert("Помилка відновлення пароля");
+      console.error(error);
+    }
+  };
+
+  return (
+    <>
+      {isVisual && (
+        <div className={s.authWrapper}>
+          <div className={s.authBlock}>
+            <h3 className={s.title}>Авторизація</h3>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchemaRegister}
+              onSubmit={hundlerAuth}
+            >
+              {({ values }) => (
+                <Form className={s.form}>
+                  <div className={s.inputWrapper}>
+                    <label className={s.label}>
+                      <Field
+                        type="email"
+                        name="email"
+                        placeholder="Логін"
+                        className={s.input}
+                      />
+                      <ErrorMessage
+                        name="email"
+                        component="p"
+                        className={s.error}
+                      />
+                    </label>
+
+                    <label className={s.label}>
+                      <Field
+                        type="password"
+                        name="password"
+                        autoComplete="current-password"
+                        placeholder="Пароль"
+                        className={s.input}
+                      />
+                      <ErrorMessage
+                        name="password"
+                        component="p"
+                        className={s.error}
+                      />
+                    </label>
+
+                    <button
+                      type="button"
+                      className={s.btnRestore}
+                      onClick={() => handleResetPassword(values.email)}
+                    >
+                      Відновити пароль
+                    </button>
+                  </div>
+
+                  <button type="submit" className={s.btnEnter}>
+                    Увійти
+                  </button>
+                </Form>
+              )}
+            </Formik>
+          </div>
+        </div>
+      )}
+    </>
+  );
 };
 
 export default Authorization;
