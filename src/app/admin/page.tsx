@@ -1,16 +1,30 @@
 "use client";
+
 import AdminPage from "@/components/Admin/AdminPage/AdminPage";
-import Authorization from "@/components/Admin/Authorization/Authorization";
-import React, { useEffect, useState } from "react";
+import { auth } from "../../../firebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const Page = () => {
-	const [isAuth, setIsAuth] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
-	useEffect(() => {
-		setIsAuth(true);
-	}, []);
+  useEffect(() => {
+    const unsub = onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        router.replace("/login");
+      } else {
+        setLoading(false);
+      }
+    });
 
-	return <>{isAuth ? <AdminPage /> : <Authorization />}</>;
+    return () => unsub();
+  }, [router]);
+
+  if (loading) return null;
+
+  return <AdminPage />;
 };
 
 export default Page;
