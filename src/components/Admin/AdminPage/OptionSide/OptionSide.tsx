@@ -2,6 +2,9 @@
 import React from "react";
 import s from "./OptionSide.module.css";
 import { AdminSection } from "../MenuSide/MenuSide";
+import Gallery from "./Gallery/Gallery";
+import Reviews from "./Reviews/Reviews";
+import Services from "./Services/Services";
 
 type OptionSideProps = {
   active: AdminSection;
@@ -13,11 +16,23 @@ type OptionSideProps = {
 
 const OptionSide = ({ active }: OptionSideProps) => {
   if (active === "gallery")
-    return <div className={s.optionSideWrapper}>Gallery</div>;
+    return (
+      <div className={s.optionSideWrapper}>
+        <Gallery />
+      </div>
+    );
   if (active === "reviews")
-    return <div className={s.optionSideWrapper}>Reviews</div>;
+    return (
+      <div className={s.optionSideWrapper}>
+        <Reviews />
+      </div>
+    );
   if (active === "services")
-    return <div className={s.optionSideWrapper}>Services</div>;
+    return (
+      <div className={s.optionSideWrapper}>
+        <Services />
+      </div>
+    );
   return null;
 };
 
