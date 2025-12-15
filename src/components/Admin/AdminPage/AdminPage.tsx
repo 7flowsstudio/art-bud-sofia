@@ -1,16 +1,19 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import s from "./AdminPage.module.css";
 import MenuSide from "./MenuSide/MenuSide";
 import OptionSide from "./OptionSide/OptionSide";
 
+export type AdminSection = "gallery" | "reviews" | "services";
+
 const AdminPage = () => {
-	return (
-		<div className={s.adminWraper}>
-			<MenuSide />
-			<OptionSide />
-		</div>
-	);
+  const [activeSection, setActiveSection] = useState<AdminSection>("gallery");
+  return (
+    <div className={s.adminWraper}>
+      <MenuSide onSelect={setActiveSection} active={activeSection} />
+      <OptionSide active={activeSection} />
+    </div>
+  );
 };
 
 export default AdminPage;
