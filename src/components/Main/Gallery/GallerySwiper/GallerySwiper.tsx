@@ -8,103 +8,106 @@ import "swiper/css";
 import "swiper/css/navigation";
 import SlideItem from "./SlideItem/SlideItem";
 
+import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import { db } from "../../../../../firebaseConfig";
+
 const GallerySwiper = () => {
-	const [width, setWidth] = useState(
-		typeof window !== "undefined" ? window.innerWidth : 0
-	);
+  const [width, setWidth] = useState(
+    typeof window !== "undefined" ? window.innerWidth : 0
+  );
+  const [media, setMedia] = useState<string[]>([]);
 
-	useEffect(() => {
-		const handleResize = () => setWidth(window.innerWidth);
-		window.addEventListener("resize", handleResize);
-		return () => window.removeEventListener("resize", handleResize);
-	}, []);
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-	const autoHeightValue = width < 1280;
+  useEffect(() => {
+    const fetchGallery = async () => {
+      try {
+        const q = query(
+          collection(db, "gallery"),
+          orderBy("createdAt", "desc")
+        );
+        const snapshot = await getDocs(q);
+        const urls = snapshot.docs.map((doc) => doc.data().imageUrl);
+        setMedia(urls);
+      } catch (err) {
+        console.error("Error fetching gallery:", err);
+      }
+    };
 
-	const media = [
-		"/img/gallery/img_1.webp",
-		"/img/gallery/img_2.webp",
-		"/img/gallery/img_3.webp",
-		"/img/gallery/img_1.webp",
-		"/img/gallery/img_2.webp",
-		"/img/gallery/img_3.webp",
-	];
+    fetchGallery();
+  }, []);
 
-	const widths = ["slide25", "slide30", "slide45"];
+  const autoHeightValue = width < 1280;
+  const widths = ["slide25", "slide30", "slide45"];
 
-	return (
-		<div id="SliderGallery" className={s.gallerySwiper}>
-			<div className={`container ${s.sliderContainer}`}>
-				<div className={s.headBlock}>
-					<h2 className={s.title}>Galeria prac</h2>
+  return (
+    <div id="SliderGallery" className={s.gallerySwiper}>
+      <div className={`container ${s.sliderContainer}`}>
+        <div className={s.headBlock}>
+          <h2 className={s.title}>Galeria prac</h2>
 
-					<div className={s.laptopPagination}>
-						<button type="button" className={`gallery-prev ${s.navButton}`}>
-							<svg className={s.navButton_icon}>
-								<use href="/sprite.svg#icon-btn-on-top"></use>
-							</svg>
-						</button>
+          <div className={s.laptopPagination}>
+            <button type="button" className={`gallery-prev ${s.navButton}`}>
+              <svg className={s.navButton_icon}>
+                <use href="/sprite.svg#icon-btn-on-top"></use>
+              </svg>
+            </button>
 
-						<button type="button" className={`gallery-next ${s.navButton}`}>
-							<svg className={`${s.navButton_icon} ${s.right}`}>
-								<use href="/sprite.svg#icon-btn-on-top"></use>
-							</svg>
-						</button>
-					</div>
-				</div>
+            <button type="button" className={`gallery-next ${s.navButton}`}>
+              <svg className={`${s.navButton_icon} ${s.right}`}>
+                <use href="/sprite.svg#icon-btn-on-top"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
 
-				<Swiper
-					className={s.swiper}
-					navigation={{
-						nextEl: ".gallery-next",
-						prevEl: ".gallery-prev",
-					}}
-					modules={[Navigation]}
-					autoHeight={autoHeightValue}
-					loop={true}
-					slidesPerView="auto"
-					spaceBetween={24}
-					breakpoints={{
-						320: {
-							slidesPerView: 1,
-							spaceBetween: 6,
-						},
-						768: {
-							slidesPerView: 2,
-							spaceBetween: 10,
-						},
-						1280: {
-							slidesPerView: "auto",
-							spaceBetween: 20,
-						},
-					}}
-				>
-					{media.map((item, index) => (
-						<SwiperSlide
-							key={index}
-							className={`${s.slide} ${s[widths[index % 3]]}`}
-						>
-							<SlideItem item={item} />
-						</SwiperSlide>
-					))}
-				</Swiper>
+        <Swiper
+          className={s.swiper}
+          navigation={{
+            nextEl: ".gallery-next",
+            prevEl: ".gallery-prev",
+          }}
+          modules={[Navigation]}
+          autoHeight={autoHeightValue}
+          loop={true}
+          slidesPerView="auto"
+          spaceBetween={24}
+          breakpoints={{
+            320: { slidesPerView: 1, spaceBetween: 6 },
+            768: { slidesPerView: 2, spaceBetween: 10 },
+            1280: { slidesPerView: "auto", spaceBetween: 20 },
+          }}
+        >
+          {media.map((item, index) => (
+            <SwiperSlide
+              key={index}
+              className={`${s.slide} ${s[widths[index % 3]]}`}
+            >
+              <SlideItem item={item} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
 
-				<div className={s.mobPagination}>
-					<button type="button" className={`gallery-prev ${s.navButton}`}>
-						<svg className={s.navButton_icon}>
-							<use href="/sprite.svg#icon-btn-on-top"></use>
-						</svg>
-					</button>
+        <div className={s.mobPagination}>
+          <button type="button" className={`gallery-prev ${s.navButton}`}>
+            <svg className={s.navButton_icon}>
+              <use href="/sprite.svg#icon-btn-on-top"></use>
+            </svg>
+          </button>
 
-					<button type="button" className={`gallery-next ${s.navButton}`}>
-						<svg className={`${s.navButton_icon} ${s.right}`}>
-							<use href="/sprite.svg#icon-btn-on-top"></use>
-						</svg>
-					</button>
-				</div>
-			</div>
-		</div>
-	);
+          <button type="button" className={`gallery-next ${s.navButton}`}>
+            <svg className={`${s.navButton_icon} ${s.right}`}>
+              <use href="/sprite.svg#icon-btn-on-top"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default GallerySwiper;
