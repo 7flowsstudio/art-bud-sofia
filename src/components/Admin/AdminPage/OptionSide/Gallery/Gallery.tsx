@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import {
   collection,
@@ -20,132 +21,91 @@ type GalleryItem = {
   createdAt: number;
 };
 
-// const Gallery = () => {
-//   const [file, setFile] = useState<File | null>(null);
-//   const [gallery, setGallery] = useState<GalleryItem[]>([]);
-
-//   const fetchGallery = async () => {
-//     const q = query(collection(db, "gallery"), orderBy("createdAt", "desc"));
-//     const snapshot = await getDocs(q);
-//     const galleryArray: GalleryItem[] = snapshot.docs.map((doc) => ({
-//       id: doc.id,
-//       imageUrl: doc.data().imageUrl,
-//       createdAt: doc.data().createdAt,
-//     }));
-//     setGallery(galleryArray);
-//   };
-
-//   useEffect(() => {
-//     fetchGallery();
-//   }, []);
-
-//   const upload = async () => {
-//     if (!file) return;
-
-//     const formData = new FormData();
-//     formData.append("file", file);
-
-//     try {
-//       const { data } = await axios.post("/api/upload", formData);
-
-//       await addDoc(collection(db, "gallery"), {
-//         imageUrl: data.url,
-//         createdAt: Date.now(),
-//       });
-
-//       setFile(null);
-//       fetchGallery(); // оновлюємо список після завантаження
-//     } catch (error) {
-//       console.error("Upload error:", error);
-//     }
-//   };
-
-//   const handleDelete = async (id: string) => {
-//     if (!confirm("Видалити фото?")) return;
-
-//     try {
-//       await deleteDoc(doc(db, "gallery", id));
-//       fetchGallery(); // оновлюємо список після видалення
-//     } catch (error) {
-//       console.error("Delete error:", error);
-//     }
-//   };
 const Gallery = () => {
   const [file, setFile] = useState<File | null>(null);
   const [gallery, setGallery] = useState<GalleryItem[]>([]);
+  const [loading, setLoading] = useState(false);
 
-  // Завантажуємо список фото з локального стану (або з Firebase/DB, якщо потрібно)
+  const fetchGallery = async () => {
+    const q = query(collection(db, "gallery"), orderBy("createdAt", "desc"));
+    const snapshot = await getDocs(q);
+
+    setGallery(
+      snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...(doc.data() as Omit<GalleryItem, "id">),
+      }))
+    );
+  };
+
   useEffect(() => {
-    const storedGallery = localStorage.getItem("gallery");
-    if (storedGallery) {
-      setGallery(JSON.parse(storedGallery));
-    }
+    fetchGallery();
   }, []);
-
-  // Зберігаємо в localStorage, щоб після перезавантаження залишались
-  useEffect(() => {
-    localStorage.setItem("gallery", JSON.stringify(gallery));
-  }, [gallery]);
 
   const upload = async () => {
     if (!file) return;
 
-    const formData = new FormData();
-    formData.append("file", file);
-
     try {
-      const { data } = await axios.post("/api/upload", formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      setLoading(true);
 
-      const newItem: GalleryItem = {
-        id: Date.now().toString(),
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const { data } = await axios.post("/api/upload", formData);
+
+      await addDoc(collection(db, "gallery"), {
         imageUrl: data.url,
         createdAt: Date.now(),
-      };
+      });
 
-      setGallery([newItem, ...gallery]);
       setFile(null);
-    } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : String(err);
-      console.error("Upload error:", message);
-      alert("Помилка завантаження файлу");
+      fetchGallery();
+    } catch (error) {
+      console.error("Upload error:", error);
+      alert("Помилка завантаження");
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
     if (!confirm("Видалити фото?")) return;
-    setGallery(gallery.filter((item) => item.id !== id));
+
+    try {
+      await deleteDoc(doc(db, "gallery", id));
+      fetchGallery();
+    } catch (error) {
+      console.error("Delete error:", error);
+    }
   };
 
   return (
     <div>
-      Gallery
-      <div>
-        <label className={s.button}>
-          + Додати нове фото
-          <input
-            type="file"
-            onChange={(e) => {
-              if (e.target.files && e.target.files[0]) {
-                setFile(e.target.files[0]);
-              }
-            }}
-            style={{ display: "none" }}
-          />
-        </label>
-      </div>
-      <div>
-        <button onClick={upload} disabled={!file}>
-          Upload
-        </button>
-      </div>
+      <h2>Gallery</h2>
+
+      <label className={s.button}>
+        + Додати фото
+        <input
+          type="file"
+          hidden
+          onChange={(e) => {
+            if (e.target.files?.[0]) {
+              setFile(e.target.files[0]);
+            }
+          }}
+        />
+      </label>
+
+      <button onClick={upload} disabled={!file || loading}>
+        {loading ? "Uploading..." : "Upload"}
+      </button>
+
       <div className={s.galleryList}>
         {gallery.map((item) => (
           <div key={item.id} className={s.galleryItem}>
             <Image
               src={item.imageUrl}
-              alt="uploaded"
+              alt="gallery image"
               width={200}
               height={200}
               className={s.image}

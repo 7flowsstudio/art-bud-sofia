@@ -1,47 +1,62 @@
 .slideWrapper {
-	width: 100%;
-	overflow: hidden;
-	/* border: 1px solid blue; */
+  width: 100%;
+  overflow: hidden;
+  /* border: 1px solid blue; */
 }
+
 .sliderContent {
-	/* border: 1px solid blue; */
-	display: flex;
-	flex-direction: column-reverse;
-	justify-content: space-between;
-	align-items: center;
-	gap: clamp(24px, calc((40 / 768) * 100vw), 40px);
+  /* border: 1px solid blue; */
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: space-between;
+  align-items: center;
+  gap: clamp(24px, calc((40 / 768) * 100vw), 40px);
 }
 .imageWrapper {
-	position: relative;
-	width: 100%;
-	height: auto;
-	border-radius: 15px;
-	overflow: hidden;
-	/* aspect-ratio: 306 / 306; */
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  /* aspect-ratio: 306 / 306; */
 }
+
 .image {
-	/* position: absolute;
+  /* position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
 	object-fit: cover; */
-	width: 100%;
-	height: auto;
-	object-fit: cover;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.imageWrapper {
+  width: 100%;
+  max-width: 500px; /* обмежує ширину картинки */
+  max-height: 500px; /* обмежує висоту картинки */
+  height: auto; /* автоматично підлаштовує висоту під пропорції */
+  overflow: hidden;
+  position: relative;
 }
 
+.imageWrapper img {
+  width: 100%;
+  height: auto; /* зберігає пропорції */
+  object-fit: contain; /* або cover, якщо хочеш обрізати зайве */
+}
 @media screen and (min-width: 768px) {
-	/* .imageWrapper {
+  /* .imageWrapper {
 		width: 100%;
 		aspect-ratio: 306 / 360;
 	} */
 }
 @media screen and (min-width: 1280px) {
-	.sliderContent {
-		flex-direction: row;
-	}
-	/* .imageWrapper {
+  .sliderContent {
+    flex-direction: row;
+  }
+  /* .imageWrapper {
 		aspect-ratio: 576 / 480;
 	} */
 }
