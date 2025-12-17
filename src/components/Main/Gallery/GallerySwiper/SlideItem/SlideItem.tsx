@@ -12,14 +12,7 @@ const SlideItem: React.FC<SlideItemProps> = ({ item }) => {
     <div className={s.slideWrapper}>
       <div className={s.sliderContent}>
         <div className={s.imageWrapper}>
-          <Image
-            src={item}
-            width={100}
-            height={100}
-            style={{ objectFit: "cover" }}
-            alt={`article`}
-            className={s.image}
-          />
+          <Image src={item} fill alt={`article`} className={s.image} />
         </div>
       </div>
     </div>
