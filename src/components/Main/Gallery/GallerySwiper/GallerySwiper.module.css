@@ -1,4 +1,114 @@
 .gallerySwiper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+
+.galleryContainer {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: none; /* Firefox */
+}
+
+.galleryContainer::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+.headBlock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  margin-bottom: 40px;
+}
+
+.title {
+  color: var(--black);
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: -4%;
+}
+
+.slideWrapper {
+  flex: 0 0 auto;
+  border-radius: 16px;
+  max-width: 300px;
+  overflow: hidden;
+}
+.arrow {
+  background: var(--white);
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+.navButton {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  border: 1px solid var(--border-disabled-color);
+  border-radius: 8px;
+  background: var(--white);
+  cursor: pointer;
+}
+
+.navButton_icon {
+  width: 16px;
+  height: 16px;
+  stroke: var(--black);
+  fill: none;
+  transform: rotate(-90deg);
+  transition: transform 0.15s ease;
+}
+.navButton:hover .navButton_icon {
+  stroke: var(--border-disabled-color);
+}
+
+.right {
+  transform: rotate(90deg);
+}
+
+.navButton:active .navButton_icon {
+  transform: scale(0.7) rotate(-90deg);
+}
+
+.navButton:active .navButton_icon.right {
+  transform: scale(0.7) rotate(90deg);
+}
+
+.right {
+  transform: rotate(90deg);
+}
+.mobPagination {
+  width: 106px;
+  height: 48px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 40px;
+}
+
+/* .gallerySwiper {
   padding-top: 120px;
   padding-bottom: 120px;
 }
@@ -10,23 +120,17 @@
 }
 .swiper {
   max-height: 500px;
+
 }
+
 .slide {
-  height: 100%;
+  height: auto;
   display: flex;
-  width: calc(100% - 12px);
-}
-/* .slide25 {
-  width: 25% !important;
+  width: fit-content;
+  margin: 0;
+
 }
 
-.slide30 {
-  width: 30% !important;
-}
-
-.slide45 {
-  width: calc(45% - 45px) !important;
-} */
 
 .headBlock {
   display: flex;
@@ -81,24 +185,23 @@
   stroke: var(--black);
   fill: none;
   transform: rotate(-90deg);
-  transition: transform 0.15s ease; /* плавність */
+  transition: transform 0.15s ease; 
 }
 .navButton:hover .navButton_icon {
   stroke: var(--border-disabled-color);
 }
-/* Анімація при натисканні */
-/* Додатковий клас для правої кнопки */
+
 .right {
-  transform: rotate(90deg); /* наприклад, для правої кнопки, замінює базовий */
+  transform: rotate(90deg); 
 }
 
-/* Ефект збільшення при натисканні для всіх іконок */
+
 .navButton:active .navButton_icon {
-  transform: scale(0.7) rotate(-90deg); /* для лівої кнопки */
+  transform: scale(0.7) rotate(-90deg); 
 }
 
 .navButton:active .navButton_icon.right {
-  transform: scale(0.7) rotate(90deg); /* для правої кнопки */
+  transform: scale(0.7) rotate(90deg); 
 }
 
 .right {
@@ -109,14 +212,14 @@
   display: none;
 }
 
-/* MOBILE */
+
 @media screen and (max-width: 767px) {
   .slide {
     width: 100% !important;
   }
 }
 
-/* TABLET */
+
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   .slide {
     width: calc(50% - 5px) !important;
@@ -138,12 +241,12 @@
   }
 }
 
-/* DESKTOP WIDTHS */
+
 @media screen and (min-width: 1280px) {
-  /* .slide {
+  .slide {
 	max-width: 500px;
-  } */
-  .slide25 {
+  } 
+   .slide25 {
     width: 25% !important;
   }
 
@@ -155,3 +258,19 @@
     width: 45% !important;
   }
 }
+.slideWrapper {
+  width: auto; 
+  max-width: 300px; 
+}
+
+.imageWrapper {
+  width: auto;
+  max-width: 300px;
+}
+
+.image {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  object-fit: contain;
+} */

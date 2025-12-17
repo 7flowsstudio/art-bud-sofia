@@ -1,51 +1,41 @@
 .slideWrapper {
-  width: 100%;
+  width: auto;
   overflow: hidden;
+  max-width: 300px;
+  align-self: flex-start;
+
   /* border: 1px solid blue; */
 }
 
 .sliderContent {
   /* border: 1px solid blue; */
   display: flex;
-  flex-direction: column-reverse;
-  justify-content: space-between;
-  align-items: center;
-  gap: clamp(24px, calc((40 / 768) * 100vw), 40px);
+  /* flex-direction: column-reverse; */
+  justify-content: center;
+  /* align-items: center; */
+  gap: 24px;
+  max-width: 300px;
+  align-self: flex-start;
 }
 .imageWrapper {
+  display: flex;
   position: relative;
   width: 100%;
   height: 100%;
-  border-radius: 15px;
+  max-width: 300px;
+  max-height: 500px;
+  aspect-ratio: 1 / 1; /* або 306 / 306 */
   overflow: hidden;
-  /* aspect-ratio: 306 / 306; */
+  align-self: flex-start;
 }
 
 .image {
-  /* position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	object-fit: cover; */
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-.imageWrapper {
-  width: 100%;
-  max-width: 500px; /* обмежує ширину картинки */
-  max-height: 500px; /* обмежує висоту картинки */
-  height: auto; /* автоматично підлаштовує висоту під пропорції */
-  overflow: hidden;
-  position: relative;
+  object-fit: contain;
+  border-radius: 16px;
+  width: auto !important;
+  align-self: flex-start;
 }
 
-.imageWrapper img {
-  width: 100%;
-  height: auto; /* зберігає пропорції */
-  object-fit: contain; /* або cover, якщо хочеш обрізати зайве */
-}
 @media screen and (min-width: 768px) {
   /* .imageWrapper {
 		width: 100%;
