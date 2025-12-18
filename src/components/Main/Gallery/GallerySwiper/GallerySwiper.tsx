@@ -8,6 +8,7 @@ import { useSmoothScroll } from "@/utils/useSmoothScroll";
 
 const GallerySwiper = () => {
   const [media, setMedia] = useState<string[]>([]);
+  const [width, setWidth] = useState(0);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const { scrollSmooth } = useSmoothScroll(containerRef, {
     slidesToScroll: 1,
@@ -31,6 +32,8 @@ const GallerySwiper = () => {
     };
     fetchGallery();
   }, []);
+
+  const widths = ["slide25", "slide30", "slide45"];
 
   return (
     <div id="SliderGallery" className={s.gallerySwiper}>
@@ -61,14 +64,18 @@ const GallerySwiper = () => {
         </div>
 
         <div className={s.galleryContainer} ref={containerRef}>
-          {media.map((item) => (
-            <div key={item} className={s.slideWrapper}>
+          {media.map((item, index) => (
+            <div
+              key={item}
+              className={`${s.slideWrapper} ${s[widths[index % 3]]}`}
+            >
               <Image
                 src={item}
                 alt="article"
-                width={300}
-                height={200}
-                style={{ width: "auto", height: "auto", maxWidth: "100%" }}
+                fill
+                className={s.image}
+                sizes="(max-width: 768px) 100vw, auto"
+                // style={{ width: "auto", height: "auto", maxWidth: "100%" }}
               />
             </div>
           ))}

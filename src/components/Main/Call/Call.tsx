@@ -4,7 +4,7 @@ import s from "./Call.module.css";
 const Call = () => {
   return (
     <div className={s.section}>
-      <div className={s.container}>
+      <div className={`container ${s.containerCall}`}>
         <Image
           src="/img/call/call.svg"
           alt="stars"
