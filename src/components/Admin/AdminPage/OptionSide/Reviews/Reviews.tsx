@@ -73,7 +73,7 @@ export default function Reviews() {
   };
 
   return (
-    <div>
+    <div className={s.contAdmRev}>
       <div className={s.table}>
         <div className={`${s.row} ${s.header}`}>
           <div>Фото</div>

@@ -64,7 +64,7 @@ export default function Services() {
   };
 
   return (
-    <div>
+    <div className={s.contAdmServ}>
       <div className={s.table}>
         <div className={`${s.row} ${s.header}`}>
           <div>Фото</div>
