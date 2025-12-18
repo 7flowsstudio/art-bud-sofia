@@ -100,7 +100,7 @@ export default function Reviews() {
 
       {reviews.map((r) => (
         <div key={r.id}>
-          <Image src={r.imageUrl} alt="" width={150} height={150} />
+          <Image src={r.imageUrl} alt="" width={48} height={48} />
           <p>{r.author}</p>
           <p>{r.city}</p>
           <p>{r.text}</p>

@@ -1,0 +1,37 @@
+.section {
+  padding-bottom: 120px;
+}
+.reviewContainer {
+  display: flex;
+}
+.firstCont {
+  background-color: var(--brand-secondary);
+  border-radius: 16px;
+  width: clamp(284px, calc((284 / 375) * 100vw), calc((502 / 1280) * 100vw));
+  height: clamp(291px, calc((291 / 375) * 100vw), calc((382 / 1280) * 100vw));
+  min-width: 284px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  gap: 16px;
+}
+.title,
+.text {
+  color: var(--white);
+}
+.title {
+  font-family: var(--second-family);
+  font-size: clamp(32px, calc((32 / 375) * 100vw), calc((40 / 1280) * 100vw));
+}
+.text {
+  font-family: var(--font-family);
+  font-size: clamp(16px, calc((16 / 375) * 100vw), calc((20 / 1280) * 100vw));
+}
+.list {
+  display: flex;
+}
+.imageWrapper {
+  width: 100%;
+}
