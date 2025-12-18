@@ -80,7 +80,7 @@ export default function Reviews() {
           <div>Імʼя</div>
           <div>Місто</div>
           <div>Текст</div>
-          <div>Дії</div>
+          <div>Дія</div>
         </div>
         <div className={s.wrappTable}>
           <div className={`${s.row} ${s.addRow}`}>
