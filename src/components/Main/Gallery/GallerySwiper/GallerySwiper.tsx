@@ -12,7 +12,7 @@ const GallerySwiper = () => {
   const { scrollSmooth } = useSmoothScroll(containerRef, {
     slidesToScroll: 1,
     gap: 1,
-    duration: 300,
+    duration: 500,
   });
 
   useEffect(() => {

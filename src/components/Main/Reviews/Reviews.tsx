@@ -1,9 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import Image from "next/image";
 import { db } from "../../../../firebaseConfig";
 import s from "./Reviews.module.css";
+import { useSmoothScroll } from "@/utils/useSmoothScroll";
 
 type Review = {
   id: string;
@@ -15,6 +16,12 @@ type Review = {
 
 const Reviews = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const { scrollSmooth } = useSmoothScroll(containerRef, {
+    slidesToScroll: 1,
+    gap: 1,
+    duration: 500,
+  });
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -38,7 +45,7 @@ const Reviews = () => {
 
   return (
     <div className={`container ${s.section}`}>
-      <div className={s.reviewContainer}>
+      <div className={s.reviewContainer} ref={containerRef}>
         <div className={s.firstCont}>
           <h3 className={s.title}>Co mówią nasi klienci</h3>
           <p className={s.text}>
@@ -64,6 +71,26 @@ const Reviews = () => {
             </li>
           ))}
         </ul>
+      </div>
+      <div className={s.mobPagination}>
+        <button
+          type="button"
+          onClick={() => scrollSmooth("left")}
+          className={`gallery-prev ${s.navButton}`}
+        >
+          <svg className={s.navButton_icon}>
+            <use href="/sprite.svg#icon-btn-on-top" />
+          </svg>
+        </button>
+        <button
+          type="button"
+          onClick={() => scrollSmooth("right")}
+          className={`gallery-next ${s.navButton}`}
+        >
+          <svg className={`${s.navButton_icon} ${s.right}`}>
+            <use href="/sprite.svg#icon-btn-on-top" />
+          </svg>
+        </button>
       </div>
     </div>
   );
