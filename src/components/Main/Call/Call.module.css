@@ -2,7 +2,7 @@
   background-color: var(--brand-secondary);
   /* padding-top: 120px; */
 }
-.container {
+.containerCall {
   padding: 40px 16px;
   display: flex;
   flex-direction: column;
@@ -76,7 +76,7 @@
   }
 }
 @media screen and (min-width: 1440px) {
-  .container {
+  .containerCall {
     padding: 76px 106px;
   }
   .imgCall {

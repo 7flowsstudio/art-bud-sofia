@@ -80,44 +80,62 @@ const Gallery = () => {
   };
 
   return (
-    <div>
-      <h2>Gallery</h2>
-
-      <label className={s.button}>
-        + Додати фото
-        <input
-          type="file"
-          hidden
-          onChange={(e) => {
-            if (e.target.files?.[0]) {
-              setFile(e.target.files[0]);
-            }
-          }}
-        />
-      </label>
-
-      <button onClick={upload} disabled={!file || loading}>
-        {loading ? "Uploading..." : "Upload"}
-      </button>
-
-      <div className={s.galleryList}>
-        {gallery.map((item) => (
-          <div key={item.id} className={s.galleryItem}>
-            <Image
-              src={item.imageUrl}
-              alt="gallery image"
-              width={200}
-              height={200}
-              className={s.image}
+    <div className={`container ${s.contAdmGall}`}>
+      <div className={s.wrappContF}>
+        <div className={s.wrapp}>
+          <label className={s.button}>
+            + Додати нове фото
+            <input
+              type="file"
+              hidden
+              onChange={(e) => {
+                if (e.target.files?.[0]) {
+                  setFile(e.target.files[0]);
+                }
+              }}
             />
-            <button
-              className={s.deleteButton}
-              onClick={() => handleDelete(item.id)}
-            >
-              Видалити
-            </button>
+          </label>
+
+          <button
+            onClick={upload}
+            disabled={!file || loading}
+            className={s.btnUpl}
+          >
+            {loading ? "Завантаження..." : "Завантажити"}
+          </button>
+        </div>
+      </div>
+      <div className={s.wrappSec}>
+        <div className={s.galleryList}>
+          <div className={s.head}>
+            <p className={s.textF}>Фото</p>
+            <p className={s.text}>Дія</p>
           </div>
-        ))}
+          {gallery.map((item) => (
+            <div key={item.id} className={s.galleryItem}>
+              <div className={s.wrappImg}>
+                <Image
+                  src={item.imageUrl}
+                  alt="gallery image"
+                  width={78}
+                  height={78}
+                  className={s.image}
+                />
+              </div>
+              <button
+                className={s.deleteButton}
+                onClick={() => handleDelete(item.id)}
+              >
+                <Image
+                  src="/img/admin/trash.svg"
+                  alt="delete"
+                  width={24}
+                  height={24}
+                />
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

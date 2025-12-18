@@ -11,7 +11,7 @@
     min-height: 800px;
   }
 } */
-.container {
+.containerHero {
   padding: 16px;
 }
 .block {
@@ -53,7 +53,7 @@
   }
 }
 @media screen and (min-width: 768px) {
-  .container {
+  .containerHero {
     padding: 34px;
   }
   .block {

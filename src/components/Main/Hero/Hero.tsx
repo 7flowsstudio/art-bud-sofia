@@ -4,7 +4,7 @@ import Block from "./Block/Block";
 
 const Hero = () => {
   return (
-    <div className={s.container}>
+    <div className={`container ${s.containerHero}`}>
       <div className={s.block}>
         <Block />
       </div>

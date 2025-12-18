@@ -64,34 +64,59 @@ export default function Services() {
   };
 
   return (
-    <div>
-      <h2>Services</h2>
-
-      <input
-        placeholder="Назва"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <textarea
-        placeholder="Опис"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      />
-
-      <input
-        type="file"
-        onChange={(e) => e.target.files && setFile(e.target.files[0])}
-      />
-      <button onClick={upload}>Add service</button>
-
-      {services.map((s) => (
-        <div key={s.id}>
-          <Image src={s.imageUrl} alt="" width={100} height={100} />
-          <h4>{s.title}</h4>
-          <p>{s.description}</p>
-          <button onClick={() => remove(s.id)}>Delete</button>
+    <div className={s.contAdmServ}>
+      <div className={s.table}>
+        <div className={`${s.row} ${s.header}`}>
+          <div>Фото</div>
+          <div>Назва</div>
+          <div>Опис</div>
+          <div>Дія</div>
         </div>
-      ))}
+        <div className={s.wrappTable}>
+          <div className={`${s.row} ${s.addRow}`}>
+            <label className={s.button}>
+              + Додати фото
+              <input
+                type="file"
+                hidden
+                onChange={(e) => {
+                  if (e.target.files?.[0]) {
+                    setFile(e.target.files[0]);
+                  }
+                }}
+              />
+            </label>
+            <input
+              name="name"
+              placeholder="Назва"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <textarea
+              name="description"
+              placeholder="Опис"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <button onClick={upload}>Додати послугу</button>
+          </div>
+          {services.map((r) => (
+            <div key={r.id} className={s.row}>
+              <Image src={r.imageUrl} alt="" width={85} height={78} />
+              <p>{r.title}</p>
+              <p>{r.description}</p>
+              <button onClick={() => remove(r.id)}>
+                <Image
+                  src="/img/admin/trash.svg"
+                  alt="delete"
+                  width={24}
+                  height={24}
+                />
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

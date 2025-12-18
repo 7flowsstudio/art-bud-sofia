@@ -4,10 +4,17 @@ import Image from "next/image";
 import s from "./GallerySwiper.module.css";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { db } from "../../../../../firebaseConfig";
+import { useSmoothScroll } from "@/utils/useSmoothScroll";
 
 const GallerySwiper = () => {
   const [media, setMedia] = useState<string[]>([]);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [width, setWidth] = useState(0);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const { scrollSmooth } = useSmoothScroll(containerRef, {
+    slidesToScroll: 1,
+    gap: 1,
+    duration: 500,
+  });
 
   useEffect(() => {
     const fetchGallery = async () => {
@@ -26,40 +33,7 @@ const GallerySwiper = () => {
     fetchGallery();
   }, []);
 
-  const scrollSmooth = (direction: "left" | "right", slidesToScroll = 4) => {
-    if (!containerRef.current) return;
-
-    const slideWidth =
-      (containerRef.current.firstElementChild as HTMLElement)?.clientWidth ||
-      150;
-    const gap = 16; // відповідно до CSS
-    const distance = slidesToScroll * (slideWidth + gap);
-
-    const step = 15; // маленькі кроки для плавності
-    let scrolled = 0;
-
-    const interval = setInterval(() => {
-      if (scrolled >= distance) {
-        clearInterval(interval);
-        return;
-      }
-      containerRef.current!.scrollBy({
-        left: direction === "right" ? step : -step,
-        behavior: "auto",
-      });
-      scrolled += step;
-    }, 1);
-  };
-  const SLIDES_TO_SCROLL = 5;
-  // Гортання клавішами ← →
-  useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowLeft") scrollSmooth("left", SLIDES_TO_SCROLL);
-      if (e.key === "ArrowRight") scrollSmooth("right", SLIDES_TO_SCROLL);
-    };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, []);
+  const widths = ["slide25", "slide30", "slide45"];
 
   return (
     <div id="SliderGallery" className={s.gallerySwiper}>
@@ -90,44 +64,63 @@ const GallerySwiper = () => {
         </div>
 
         <div className={s.galleryContainer} ref={containerRef}>
-          {media.map((item) => (
-            <div key={item} className={s.slideWrapper}>
+          {media.map((item, index) => (
+            <div
+              key={item}
+              className={`${s.slideWrapper} ${s[widths[index % 3]]}`}
+            >
               <Image
                 src={item}
                 alt="article"
-                width={300} // реальна ширина
-                height={200} // висота пропорційна картинці
-                style={{ width: "auto", height: "auto", maxWidth: "100%" }}
+                fill
+                className={s.image}
+                sizes="(max-width: 768px) 100vw, auto"
+                // style={{ width: "auto", height: "auto", maxWidth: "100%" }}
               />
             </div>
           ))}
         </div>
       </div>
-      {/* <div className={s.mobPagination}>
-        <button
-          type="button"
-          onClick={() => scrollSmooth("left")}
-          className={`gallery-prev ${s.navButton}`}
-        >
-          <svg className={s.navButton_icon}>
-            <use href="/sprite.svg#icon-btn-on-top" />
-          </svg>
-        </button>
-        <button
-          type="button"
-          onClick={() => scrollSmooth("right")}
-          className={`gallery-next ${s.navButton}`}
-        >
-          <svg className={`${s.navButton_icon} ${s.right}`}>
-            <use href="/sprite.svg#icon-btn-on-top" />
-          </svg>
-        </button>
-      </div> */}
     </div>
   );
 };
 
 export default GallerySwiper;
+
+// const scrollSmooth = (direction: "left" | "right", slidesToScroll = 4) => {
+//   if (!containerRef.current) return;
+
+//   const slideWidth =
+//     (containerRef.current.firstElementChild as HTMLElement)?.clientWidth ||
+//     150;
+//   const gap = 16; // відповідно до CSS
+//   const distance = slidesToScroll * (slideWidth + gap);
+
+//   const step = 15; // маленькі кроки для плавності
+//   let scrolled = 0;
+
+//   const interval = setInterval(() => {
+//     if (scrolled >= distance) {
+//       clearInterval(interval);
+//       return;
+//     }
+//     containerRef.current!.scrollBy({
+//       left: direction === "right" ? step : -step,
+//       behavior: "auto",
+//     });
+//     scrolled += step;
+//   }, 1);
+// };
+// const SLIDES_TO_SCROLL = 5;
+// // Гортання клавішами ← →
+// useEffect(() => {
+//   const handleKey = (e: KeyboardEvent) => {
+//     if (e.key === "ArrowLeft") scrollSmooth("left", SLIDES_TO_SCROLL);
+//     if (e.key === "ArrowRight") scrollSmooth("right", SLIDES_TO_SCROLL);
+//   };
+//   window.addEventListener("keydown", handleKey);
+//   return () => window.removeEventListener("keydown", handleKey);
+// }, []);
 
 // "use client";
 // import React, { useEffect, useState } from "react";
