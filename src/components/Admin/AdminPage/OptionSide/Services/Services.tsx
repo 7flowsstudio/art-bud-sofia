@@ -103,7 +103,7 @@ export default function Services() {
           {services.map((r) => (
             <div key={r.id} className={s.row}>
               <Image src={r.imageUrl} alt="" width={85} height={78} />
-              <h4>{r.title}</h4>
+              <p>{r.title}</p>
               <p>{r.description}</p>
               <button onClick={() => remove(r.id)}>
                 <Image
