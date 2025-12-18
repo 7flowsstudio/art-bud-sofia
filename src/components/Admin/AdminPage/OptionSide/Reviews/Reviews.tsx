@@ -74,39 +74,68 @@ export default function Reviews() {
 
   return (
     <div>
-      <h2>Reviews</h2>
-
-      <input
-        placeholder="Імʼя"
-        value={author}
-        onChange={(e) => setAuthor(e.target.value)}
-      />
-      <input
-        placeholder="Місто"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-      />
-      <textarea
-        placeholder="Текст відгуку"
-        value={text}
-        onChange={(e) => setText(e.target.value)}
-      />
-
-      <input
-        type="file"
-        onChange={(e) => e.target.files && setFile(e.target.files[0])}
-      />
-      <button onClick={upload}>Add review</button>
-
-      {reviews.map((r) => (
-        <div key={r.id}>
-          <Image src={r.imageUrl} alt="" width={48} height={48} />
-          <p>{r.author}</p>
-          <p>{r.city}</p>
-          <p>{r.text}</p>
-          <button onClick={() => remove(r.id)}>Delete</button>
+      <div className={s.table}>
+        <div className={`${s.row} ${s.header}`}>
+          <div>Фото</div>
+          <div>Імʼя</div>
+          <div>Місто</div>
+          <div>Текст</div>
+          <div>Дії</div>
         </div>
-      ))}
+        <div className={s.wrappTable}>
+          <div className={`${s.row} ${s.addRow}`}>
+            <label className={s.button}>
+              + Додати фото
+              <input
+                type="file"
+                hidden
+                onChange={(e) => {
+                  if (e.target.files?.[0]) {
+                    setFile(e.target.files[0]);
+                  }
+                }}
+              />
+            </label>
+
+            <input
+              name="author"
+              placeholder="Імʼя"
+              value={author}
+              onChange={(e) => setAuthor(e.target.value)}
+            />
+            <input
+              name="city"
+              placeholder="Місто"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            />
+            <textarea
+              name="review"
+              placeholder="Текст відгуку"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+            />
+            <button onClick={upload}>Додати відгук</button>
+          </div>
+
+          {reviews.map((r) => (
+            <div key={r.id} className={s.row}>
+              <Image src={r.imageUrl} alt="" width={48} height={48} />
+              <p>{r.author}</p>
+              <p>{r.city}</p>
+              <p className={s.review}>{r.text}</p>
+              <button className={s.deleteButton} onClick={() => remove(r.id)}>
+                <Image
+                  src="/img/admin/trash.svg"
+                  alt="delete"
+                  width={24}
+                  height={24}
+                />
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
