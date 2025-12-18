@@ -12,7 +12,7 @@ const GallerySwiper = () => {
   const { scrollSmooth } = useSmoothScroll(containerRef, {
     slidesToScroll: 1,
     gap: 1,
-    duration: 50,
+    duration: 300,
   });
 
   useEffect(() => {
@@ -66,8 +66,8 @@ const GallerySwiper = () => {
               <Image
                 src={item}
                 alt="article"
-                width={300} // реальна ширина
-                height={200} // висота пропорційна картинці
+                width={300}
+                height={200}
                 style={{ width: "auto", height: "auto", maxWidth: "100%" }}
               />
             </div>

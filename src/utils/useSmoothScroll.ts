@@ -12,7 +12,7 @@ export const useSmoothScroll = (
   containerRef: RefObject<HTMLElement | null>,
   options: UseSmoothScrollOptions = {}
 ) => {
-  const { slidesToScroll = 1, gap = 1, duration = 50 } = options;
+  const { slidesToScroll = 1, gap = 1, duration = 300 } = options;
   const isScrollingRef = useRef(false);
 
   const scrollSmooth = (direction: Direction) => {
