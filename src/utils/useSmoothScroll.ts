@@ -3,9 +3,9 @@ import { useEffect, RefObject, useRef } from "react";
 type Direction = "left" | "right";
 
 interface UseSmoothScrollOptions {
-  slidesToScroll?: number; // скільки слайдів прокручувати
-  gap?: number; // gap між слайдами у px
-  duration?: number; // тривалість анімації в ms
+  slidesToScroll?: number;
+  gap?: number;
+  duration?: number;
 }
 
 export const useSmoothScroll = (
@@ -27,7 +27,7 @@ export const useSmoothScroll = (
     const slideWidth = slide.offsetWidth + marginRight;
 
     const distance = slidesToScroll * slideWidth;
-    const start = container.scrollLeft; // <-- фіксуємо старт
+    const start = container.scrollLeft;
     const target = direction === "right" ? start + distance : start - distance;
 
     const startTime = performance.now();
@@ -48,7 +48,7 @@ export const useSmoothScroll = (
       if (progress < 1) {
         requestAnimationFrame(animate);
       } else {
-        container.scrollLeft = target; // <-- точно ставимо кінець
+        container.scrollLeft = target;
         isScrollingRef.current = false;
       }
     };

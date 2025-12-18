@@ -62,12 +62,23 @@ const Reviews = () => {
                 width={112}
                 height={16}
               />
-              <p className={s.textRev}>{r.text}</p>
-              <div className={s.imageWrapper}>
-                <Image src={r.imageUrl} alt={r.author} width={48} height={48} />
+              <div className={s.contText}>
+                <p className={s.textRev}>{r.text}</p>
               </div>
-              <p className={s.author}>{r.author}</p>
-              <p>{r.city}</p>
+              <div className={s.wrapp}>
+                <div className={s.imageWrapper}>
+                  <Image
+                    src={r.imageUrl}
+                    alt={r.author}
+                    width={48}
+                    height={48}
+                  />
+                </div>
+                <div className={s.authorWrapp}>
+                  <p className={s.author}>{r.author}</p>
+                  <p>{r.city}</p>
+                </div>
+              </div>
             </li>
           ))}
         </ul>
