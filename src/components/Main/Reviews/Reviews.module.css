@@ -42,10 +42,11 @@
 }
 .contText {
   /* min-height: 160px; */
-  height: clamp(150px, calc(236 / 1280 * 100vw), 236px);
+  min-height: clamp(150px, calc(236 / 1280 * 100vw), 236px);
   display: flex;
   align-items: end;
 }
+
 .textRev {
   /* padding-top: clamp(58px, calc((58 / 375) * 100vw), calc((97 / 1280) * 100vw));
   padding-top: 50px; */
@@ -133,4 +134,14 @@
   align-items: center;
   justify-content: flex-end;
   margin-top: 40px;
+}
+@media screen and (max-width: 840px) {
+  .contText {
+    min-height: 160px;
+  }
+}
+@media screen and (min-width: 925px) and (max-width: 1025px) {
+  .contText {
+    min-height: 170px;
+  }
 }

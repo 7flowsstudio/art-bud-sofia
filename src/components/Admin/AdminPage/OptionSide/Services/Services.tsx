@@ -93,18 +93,21 @@ export default function Services() {
               onChange={(e) => setTitle(e.target.value)}
             />
             <textarea
+              className={s.textar}
               name="description"
               placeholder="Опис"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
-            <button onClick={upload}>Додати послугу</button>
+            <button className={s.btnAdd} onClick={upload}>
+              Додати послугу
+            </button>
           </div>
           {services.map((r) => (
             <div key={r.id} className={s.row}>
               <Image src={r.imageUrl} alt="" width={85} height={78} />
               <p>{r.title}</p>
-              <p>{r.description}</p>
+              <p className={s.descr}>{r.description}</p>
               <button onClick={() => remove(r.id)}>
                 <Image
                   src="/img/admin/trash.svg"
