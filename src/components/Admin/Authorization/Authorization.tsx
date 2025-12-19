@@ -9,6 +9,7 @@ import { auth } from "../../../../firebaseConfig";
 import { useRouter } from "next/navigation";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { validationSchemaRegister } from "@/data/validationSchema";
+import ResetPasswordModal from "./ResetPasswordModal/ResetPasswordModal";
 
 type AuthProps = {
   email: string;
@@ -18,6 +19,7 @@ type AuthProps = {
 const Authorization = () => {
   const [isVisual, setIsVisual] = useState(false);
   const router = useRouter();
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisual(true), 500);
@@ -100,10 +102,13 @@ const Authorization = () => {
                     <button
                       type="button"
                       className={s.btnRestore}
-                      onClick={() => handleResetPassword(values.email)}
+                      onClick={() => setOpenModal(true)}
                     >
                       Відновити пароль
                     </button>
+                    {openModal && (
+                      <ResetPasswordModal onClose={() => setOpenModal(false)} />
+                    )}
                   </div>
 
                   <button type="submit" className={s.btnEnter}>
