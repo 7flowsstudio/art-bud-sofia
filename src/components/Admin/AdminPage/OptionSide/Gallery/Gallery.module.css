@@ -1,5 +1,9 @@
 .contAdmGall {
   animation: ani 1.5s forwards;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 @keyframes ani {
   0% {
@@ -19,6 +23,9 @@
 }
 .wrappContF {
   padding: 24px;
+}
+.wrappSec {
+  min-width: 600px;
 }
 .wrapp {
   display: flex;
@@ -56,9 +63,15 @@
 }
 .textF {
   padding-left: 34px;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 14px;
 }
 .text {
   padding-right: 8px;
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 14px;
 }
 .galleryList {
   width: 100%;

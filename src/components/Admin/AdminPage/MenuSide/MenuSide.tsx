@@ -1,6 +1,8 @@
+"use client";
 import React from "react";
 import s from "./MenuSide.module.css";
 import LogoAdmin from "./LogoAdmin/LogoAdmin";
+import { useRouter } from "next/navigation";
 
 export type AdminSection = "gallery" | "reviews" | "services";
 
@@ -30,10 +32,15 @@ const MenuSide = ({ onSelect, active }: MenuSideProps) => {
       section: "services" as const,
     },
   ];
-
+  const router = useRouter();
   const menuExit = [
-    { id: 0, icon: "/sprite.svg#icon-arrow-exit", name: "На сайт" },
-    { id: 1, icon: "/sprite.svg#icon-admin-exit", name: "Вихід" },
+    { id: 0, icon: "/sprite.svg#icon-arrow-exit", name: "На сайт", path: "/" },
+    {
+      id: 1,
+      icon: "/sprite.svg#icon-admin-exit",
+      name: "Вихід",
+      path: "/login",
+    },
   ];
   return (
     <div className={s.menuSideWrapper}>
@@ -60,7 +67,12 @@ const MenuSide = ({ onSelect, active }: MenuSideProps) => {
       </div>
       <ul className={s.menuList}>
         {menuExit.map((item) => (
-          <li key={item.id} className={s.menuItem}>
+          <li
+            key={item.id}
+            className={s.menuItem}
+            onClick={() => router.push(item.path)}
+            style={{ cursor: "pointer" }}
+          >
             <div className={s.menuIconBlock}>
               <svg className={`${s.iconMenu} ${item.id === 1 && s.icon}`}>
                 <use href={item.icon}></use>

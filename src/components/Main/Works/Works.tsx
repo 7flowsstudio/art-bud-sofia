@@ -66,7 +66,7 @@ const Works = () => {
   const resetItem = () => updateItemsPerClick();
 
   return (
-    <div className={s.worksSection}>
+    <div className={s.worksSection} id="works">
       <div className={`container ${s.worksContainer}`}>
         <h2 className={s.title}>Nasze kluczowe obszary</h2>
         <ul className={s.worksList}>

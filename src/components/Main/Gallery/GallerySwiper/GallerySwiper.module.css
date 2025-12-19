@@ -9,7 +9,7 @@
 
 .galleryContainer {
   display: flex;
-  gap: 16px;
+  gap: clamp(10px, calc(20 / 1280 * 100vw), 20px);
   overflow-x: auto;
   /* scroll-behavior: smooth; */
   -webkit-overflow-scrolling: touch;
@@ -128,7 +128,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  margin-top: 40px;
+  /* margin-top: 40px; */
 }
 
 /* .gallerySwiper {

@@ -5,10 +5,13 @@ import s from "./GallerySwiper.module.css";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { db } from "../../../../../firebaseConfig";
 import { useSmoothScroll } from "@/utils/useSmoothScroll";
+import { ImageModal } from "./ImageModal/ImageModal";
 
 const GallerySwiper = () => {
   const [media, setMedia] = useState<string[]>([]);
   const [width, setWidth] = useState(0);
+  const [open, setOpen] = useState(false);
+  const [current, setCurrent] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const { scrollSmooth } = useSmoothScroll(containerRef, {
     slidesToScroll: 1,
@@ -68,6 +71,10 @@ const GallerySwiper = () => {
             <div
               key={item}
               className={`${s.slideWrapper} ${s[widths[index % 3]]}`}
+              onClick={() => {
+                setCurrent(item);
+                setOpen(true);
+              }}
             >
               <Image
                 src={item}
@@ -75,12 +82,14 @@ const GallerySwiper = () => {
                 fill
                 className={s.image}
                 sizes="(max-width: 768px) 100vw, auto"
-                // style={{ width: "auto", height: "auto", maxWidth: "100%" }}
               />
             </div>
           ))}
         </div>
       </div>
+      {open && current && (
+        <ImageModal src={current} onClose={() => setOpen(false)} />
+      )}
     </div>
   );
 };

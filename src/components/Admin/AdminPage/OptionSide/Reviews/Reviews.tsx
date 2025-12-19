@@ -110,12 +110,15 @@ export default function Reviews() {
               onChange={(e) => setCity(e.target.value)}
             />
             <textarea
+              className={s.textar}
               name="review"
               placeholder="Текст відгуку"
               value={text}
               onChange={(e) => setText(e.target.value)}
             />
-            <button onClick={upload}>Додати відгук</button>
+            <button className={s.btnAdd} onClick={upload}>
+              Додати відгук
+            </button>
           </div>
 
           {reviews.map((r) => (
