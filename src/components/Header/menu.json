@@ -1,22 +1,22 @@
 [
 	{
 		"id": 0,
-		"link": "/",
+		"link": "about",
 		"name": "O ArtBudSofia"
 	},
 	{
 		"id": 1,
-		"link": "/",
+		"link": "works",
 		"name": "Usługi"
 	},
 	{
 		"id": 2,
-		"link": "/",
+		"link": "SliderGallery",
 		"name": "Galeria"
 	},
 	{
 		"id": 3,
-		"link": "/",
+		"link": "reviews",
 		"name": "Recenzje"
 	}
 ]

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import React from "react";
 import s from "./ListInfo.module.css";
 
@@ -15,9 +14,17 @@ const ListInfo = () => {
 			<ul className={s.listInfo}>
 				{listInfo.map((item) => (
 					<li key={item.id}>
-						<Link href={item.link} className={s.infoLink}>
-							{item.name}
-						</Link>
+						{item.id === 0 || item.id === 1 ? (
+							<p className={s.infoLink}>{item.name}</p>
+						) : item.id === 2 ? (
+							<a href={`mailto:${item.link}`} className={s.infoLink}>
+								{item.name}
+							</a>
+						) : (
+							<a href={`tel:${item.link}`} className={s.infoLink}>
+								{item.name}
+							</a>
+						)}
 					</li>
 				))}
 			</ul>

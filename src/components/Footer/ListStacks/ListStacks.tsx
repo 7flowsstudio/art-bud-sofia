@@ -1,13 +1,30 @@
 import React from "react";
 import s from "./ListStacks.module.css";
 import Link from "next/link";
+import { LocalizedScrollButton } from "@/utils/LocalizedScrollButton/LocalizedScrollButton";
 
 const ListStacks = () => {
 	const listStacs = [
-		{ id: 0, link: "/", name: "O ArtBudSofia" },
-		{ id: 1, link: "/", name: "Usługi" },
-		{ id: 2, link: "/", name: "Galeria" },
-		{ id: 3, link: "/", name: "Recenzje" },
+		{
+			id: 0,
+			link: "about",
+			name: "O ArtBudSofia",
+		},
+		{
+			id: 1,
+			link: "works",
+			name: "Usługi",
+		},
+		{
+			id: 2,
+			link: "SliderGallery",
+			name: "Galeria",
+		},
+		{
+			id: 3,
+			link: "reviews",
+			name: "Recenzje",
+		},
 	];
 	return (
 		<div className={s.stackBlock}>
@@ -15,9 +32,9 @@ const ListStacks = () => {
 			<ul className={s.listStack}>
 				{listStacs.map((item) => (
 					<li key={item.id}>
-						<Link href={item.link} className={s.stackLink}>
+						<LocalizedScrollButton scrollId={item.link} className={s.stackLink}>
 							{item.name}
-						</Link>
+						</LocalizedScrollButton>
 					</li>
 				))}
 			</ul>

@@ -25,6 +25,7 @@ body {
 body {
 	color: var(--black);
 	background: var(--white);
+	position: relative;
 }
 
 * {
