@@ -4,10 +4,9 @@ import s from "./ListSocial.module.css";
 
 const ListSocial = () => {
 	const ListSocial = [
-		{ id: 0, link: "/", name: "O ArtBudSofia" },
-		{ id: 1, link: "/", name: "Usługi" },
-		{ id: 2, link: "/", name: "Galeria" },
-		{ id: 3, link: "/", name: "Recenzje" },
+		{ id: 0, link: "/", name: "Instagram" },
+		{ id: 1, link: "/", name: "Facebook" },
+		{ id: 2, link: "/", name: "Youtube" },
 	];
 	return (
 		<div className={s.socialBlock}>
