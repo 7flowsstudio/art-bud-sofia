@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import s from "./Header.module.css";
 import Logo from "./Logo/Logo";
-import Link from "next/link";
 import BurgerButton from "./BurgerButton/BurgerButton";
 import menuList from "./menu.json";
 import NavigationMobMenu from "./NavigationMobMenu/NavigationMobMenu";

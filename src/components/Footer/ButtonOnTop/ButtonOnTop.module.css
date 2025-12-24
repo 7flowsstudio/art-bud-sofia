@@ -26,3 +26,13 @@
 		top: -170px;
 	}
 }
+@media screen and (min-width: 1280px) {
+	.btnOnTop {
+		transition: stroke 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+			color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+	.btnOnTop:hover .btnTopIcon {
+		stroke: var(--border-disabled-color);
+		fill: none;
+	}
+}

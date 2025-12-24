@@ -13,7 +13,7 @@ const ListSocial = () => {
 			<h5 className={s.navigateTitle}>Social</h5>
 			<ul className={s.listSocial}>
 				{ListSocial.map((item) => (
-					<li key={item.id}>
+					<li key={item.id} className={s.socialItem}>
 						<Link href={item.link} className={s.socialLink}>
 							{item.name}
 						</Link>
