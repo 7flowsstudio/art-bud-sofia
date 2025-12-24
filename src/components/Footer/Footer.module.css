@@ -83,4 +83,29 @@
 	.navigate {
 		gap: 28px;
 	}
+
+	.animatePhrase,
+	.animateNavigate,
+	.animateCopyright {
+		opacity: 0;
+		transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+	}
+	.animatePhrase {
+		transform: translateX(-50px);
+	}
+	.animateNavigate {
+		transform: translateX(50px);
+	}
+	.animateCopyright {
+		transform: translateY(50px);
+	}
+	.animatePhrase.visible,
+	.animateNavigate.visible {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	.animateCopyright.visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }

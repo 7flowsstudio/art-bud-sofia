@@ -5,6 +5,7 @@ import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
 import AutoResizeTextarea from "./AutoResizeTextarea/AutoResizeTextarea";
 import { ValidationSchemaCallback } from "@/data/validationSchema";
 import SuccessModdal from "./SuccessModdal/SuccessModdal";
+import useScrollAnimation from "@/utils/UseScrollAnimation/useScrollAnimation";
 
 type Props = {
 	title: string;
@@ -20,6 +21,14 @@ type InitialValuesType = {
 const ContactForm = ({ title, setOpenModal }: Props) => {
 	const [successMessage, setSuccessMessage] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
+	const [heroTitleRef, heroTitleVisible] = useScrollAnimation() as [
+		React.RefObject<HTMLDivElement>,
+		boolean
+	];
+	const [heroFormRef, heroFormVisible] = useScrollAnimation() as [
+		React.RefObject<HTMLFormElement>,
+		boolean
+	];
 
 	const initialValues = {
 		name: "",
@@ -58,14 +67,26 @@ const ContactForm = ({ title, setOpenModal }: Props) => {
 
 	return (
 		<div className={s.formWrapper}>
-			<h2 className={s.title}>{title}</h2>
+			<h2
+				ref={heroTitleRef}
+				className={`${s.title} ${s.animateTitle} ${
+					heroTitleVisible ? s.visible : ""
+				}`}
+			>
+				{title}
+			</h2>
 			<Formik
 				initialValues={initialValues}
 				validationSchema={ValidationSchemaCallback}
 				onSubmit={hundlerSubmit}
 			>
 				{({ isValid, dirty }) => (
-					<Form className={s.form}>
+					<Form
+						ref={heroFormRef}
+						className={`${s.form} ${s.animateForm} ${
+							heroFormVisible ? s.visible : ""
+						}`}
+					>
 						<h3 className={s.formTitle}>Skontaktuj się z nami!</h3>
 						<div className={s.blockInputs}>
 							<label className={s.label}>

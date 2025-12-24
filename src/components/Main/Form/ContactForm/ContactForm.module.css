@@ -110,4 +110,21 @@
 		background: var(--white);
 		color: var(--brand);
 	}
+
+	.animateTitle,
+	.animateForm {
+		opacity: 0;
+		transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+	}
+	.animateForm {
+		transform: translateY(50px);
+	}
+	.animateTitle {
+		transform: translateY(-50px);
+	}
+	.animateTitle.visible,
+	.animateForm.visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }

@@ -4,6 +4,7 @@ import Image from "next/image";
 import s from "./Works.module.css";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import { db } from "../../../../firebaseConfig";
+import useScrollAnimation from "@/utils/UseScrollAnimation/useScrollAnimation";
 
 type ServiceItem = {
 	id: string;
@@ -16,6 +17,14 @@ const Works = () => {
 	const [services, setServices] = useState<ServiceItem[]>([]);
 	const [visibleCount, setVisibleCount] = useState(8);
 	const [itemsPerClick, setItemsPerClick] = useState(4);
+	const [heroTitleRef, heroTitleVisible] = useScrollAnimation() as [
+		React.RefObject<HTMLDivElement>,
+		boolean
+	];
+	const [heroBtnMoreRef, heroBtnMoreVisible] = useScrollAnimation() as [
+		React.RefObject<HTMLButtonElement>,
+		boolean
+	];
 
 	// Підтягуємо дані з Firestore
 	useEffect(() => {
@@ -68,7 +77,14 @@ const Works = () => {
 	return (
 		<div className={s.worksSection} id="works">
 			<div className={`container ${s.worksContainer}`}>
-				<h2 className={s.title}>Nasze kluczowe obszary</h2>
+				<h2
+					ref={heroTitleRef}
+					className={`${s.title} ${s.animateTitle} ${
+						heroTitleVisible ? s.visible : ""
+					}`}
+				>
+					Nasze kluczowe obszary
+				</h2>
 				<ul className={s.worksList}>
 					{services.slice(0, visibleCount).map((item) => (
 						<li key={item.id} className={s.worksItem}>
@@ -90,7 +106,10 @@ const Works = () => {
 
 				<button
 					type="button"
-					className={s.btnMore}
+					ref={heroBtnMoreRef}
+					className={`${s.btnMore} ${s.animateBtnMore} ${
+						heroBtnMoreVisible ? s.visible : ""
+					}`}
 					onClick={visibleCount < services.length ? addItem : resetItem}
 				>
 					<div className={s.iconBlock}>
