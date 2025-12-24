@@ -116,6 +116,23 @@
 		background: var(--brand);
 		color: var(--white);
 	}
+
+	.animateTitle,
+	.animateBlock {
+		opacity: 0;
+		transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+	}
+	.animateBlock {
+		transform: translateX(50px);
+	}
+	.animateTitle {
+		transform: translateX(-50px);
+	}
+	.animateTitle.visible,
+	.animateBlock.visible {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 @media screen and (min-width: 1440px) {
 	.wrappTitle {

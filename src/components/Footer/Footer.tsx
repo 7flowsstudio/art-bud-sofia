@@ -8,7 +8,20 @@ import ListInfo from "./ListInfo/ListInfo";
 import ListSocial from "./ListSocial/ListSocial";
 import ButtonOnTop from "./ButtonOnTop/ButtonOnTop";
 import { usePathname } from "next/navigation";
+import useScrollAnimation from "@/utils/UseScrollAnimation/useScrollAnimation";
 const Footer = () => {
+	const [heroPhraseRef, heroPhraseVisible] = useScrollAnimation() as [
+		React.RefObject<HTMLDivElement>,
+		boolean
+	];
+	const [heroNavigateRef, heroNavigateVisible] = useScrollAnimation() as [
+		React.RefObject<HTMLDivElement>,
+		boolean
+	];
+	const [heroCopyrightRef, heroCopyrightVisible] = useScrollAnimation() as [
+		React.RefObject<HTMLDivElement>,
+		boolean
+	];
 	const path = usePathname().split("/")[1];
 	console.log("Path", path);
 	return (
@@ -19,18 +32,33 @@ const Footer = () => {
 						<div className={s.footer}>
 							<ButtonOnTop />
 							<div className={s.content}>
-								<div className={s.logoPhrase}>
+								<div
+									ref={heroPhraseRef}
+									className={`${s.logoPhrase} ${s.animatePhrase} ${
+										heroPhraseVisible ? s.visible : ""
+									}`}
+								>
 									<LogoFooter />
 									<Description />
 								</div>
-								<div className={s.navigate}>
+								<div
+									ref={heroNavigateRef}
+									className={`${s.navigate} ${s.animateNavigate} ${
+										heroNavigateVisible ? s.visible : ""
+									}`}
+								>
 									<ListStacks />
 									<ListInfo />
 									<ListSocial />
 								</div>
 							</div>
 							<div className={s.copyright}>
-								<h4 className={s.copyrightTitle}>
+								<h4
+									ref={heroCopyrightRef}
+									className={`${s.copyrightTitle} ${s.animateCopyright} ${
+										heroCopyrightVisible ? s.visible : ""
+									}`}
+								>
 									© 2025 Art Bud Sofia. Wszelkie prawa zastrzeżone.
 								</h4>
 							</div>

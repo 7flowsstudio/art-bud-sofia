@@ -1,134 +1,153 @@
 .gallerySwiper {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  position: relative;
-  padding-top: 120px;
-  padding-bottom: 120px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	position: relative;
+	padding-top: 120px;
+	padding-bottom: 120px;
 }
 
 .galleryContainer {
-  display: flex;
-  gap: clamp(10px, calc(20 / 1280 * 100vw), 20px);
-  overflow-x: auto;
-  /* scroll-behavior: smooth; */
-  -webkit-overflow-scrolling: touch;
+	display: flex;
+	gap: clamp(10px, calc(20 / 1280 * 100vw), 20px);
+	overflow-x: auto;
+	/* scroll-behavior: smooth; */
+	-webkit-overflow-scrolling: touch;
 
-  scrollbar-width: none; /* Firefox */
+	scrollbar-width: none; /* Firefox */
 }
 
 .galleryContainer::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Edge */
+	display: none; /* Chrome, Safari, Edge */
 }
 .headBlock {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 48px;
-  margin-bottom: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 48px;
+	margin-bottom: 40px;
 }
 
 .title {
-  color: var(--black);
-  font-weight: 700;
-  line-height: 120%;
-  letter-spacing: -4%;
+	color: var(--black);
+	font-weight: 700;
+	line-height: 120%;
+	letter-spacing: -4%;
 }
 
 .slideWrapper {
-  position: relative;
-  flex: 0 0 auto;
-  border-radius: 16px;
-  overflow: hidden;
+	position: relative;
+	flex: 0 0 auto;
+	border-radius: 16px;
+	overflow: hidden;
 }
 .image {
-  object-fit: cover;
-  border-radius: 16px;
+	object-fit: cover;
+	border-radius: 16px;
 }
 .slide25 {
-  /* width: 676px;
+	/* width: 676px;
   height: 500px; */
-  width: clamp(258px, calc(676 / 1280 * 100vw), 676px);
-  height: clamp(211px, calc(500 / 1280 * 100vw), 500px);
+	width: clamp(258px, calc(676 / 1280 * 100vw), 676px);
+	height: clamp(211px, calc(500 / 1280 * 100vw), 500px);
 }
 
 .slide30 {
-  /* width: 328px;
+	/* width: 328px;
   height: 247px; */
-  width: clamp(138px, calc(328 / 1280 * 100vw), 328px);
-  height: clamp(104px, calc(247 / 1280 * 100vw), 247px);
+	width: clamp(138px, calc(328 / 1280 * 100vw), 328px);
+	height: clamp(104px, calc(247 / 1280 * 100vw), 247px);
 }
 
 .slide45 {
-  /* width: 362px;
+	/* width: 362px;
   height: 690px; */
-  width: clamp(153px, calc(362 / 1280 * 100vw), 362px);
-  height: clamp(291px, calc(690 / 1280 * 100vw), 690px);
+	width: clamp(153px, calc(362 / 1280 * 100vw), 362px);
+	height: clamp(291px, calc(690 / 1280 * 100vw), 690px);
 }
 
 .arrow {
-  background: var(--white);
-  border: 1px solid #ccc;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  cursor: pointer;
-  font-size: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-shrink: 0;
+	background: var(--white);
+	border: 1px solid #ccc;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+	font-size: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-shrink: 0;
 }
 .navButton {
-  width: 48px;
-  height: 48px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  box-sizing: border-box;
-  border: 1px solid var(--border-disabled-color);
-  border-radius: 8px;
-  background: var(--white);
-  cursor: pointer;
+	width: 48px;
+	height: 48px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+	border: 1px solid var(--border-disabled-color);
+	border-radius: 8px;
+	background: var(--white);
+	cursor: pointer;
 }
 
 .navButton_icon {
-  width: 16px;
-  height: 16px;
-  stroke: var(--black);
-  fill: none;
-  transform: rotate(-90deg);
-  transition: transform 0.15s ease;
+	width: 16px;
+	height: 16px;
+	stroke: var(--black);
+	fill: none;
+	transform: rotate(-90deg);
+	transition: transform 0.15s ease;
 }
 .navButton:hover .navButton_icon {
-  stroke: var(--border-disabled-color);
+	stroke: var(--border-disabled-color);
 }
 
 .right {
-  transform: rotate(90deg);
+	transform: rotate(90deg);
 }
 
 .navButton:active .navButton_icon {
-  transform: scale(0.7) rotate(-90deg);
+	transform: scale(0.7) rotate(-90deg);
 }
 
 .navButton:active .navButton_icon.right {
-  transform: scale(0.7) rotate(90deg);
+	transform: scale(0.7) rotate(90deg);
 }
 
 .right {
-  transform: rotate(90deg);
+	transform: rotate(90deg);
 }
 .mobPagination {
-  width: 106px;
-  height: 48px;
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  /* margin-top: 40px; */
+	width: 106px;
+	height: 48px;
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	/* margin-top: 40px; */
+}
+
+@media screen and (min-width: 1280px) {
+	.animateTitle,
+	.animatePagination {
+		opacity: 0;
+		transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+	}
+	.animatePagination {
+		transform: translateX(50px);
+	}
+	.animateTitle {
+		transform: translateX(-50px);
+	}
+	.animatePagination.visible,
+	.animateTitle.visible {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 
 /* .gallerySwiper {

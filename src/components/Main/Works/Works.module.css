@@ -156,6 +156,23 @@
 		stroke: var(--white);
 		fill: var(--white);
 	}
+
+	.animateBtnMore,
+	.animateTitle {
+		opacity: 0;
+		transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+	}
+	.animateBtnMore {
+		transform: translateY(50px);
+	}
+	.animateTitle {
+		transform: translateY(-50px);
+	}
+	.animateBtnMore.visible,
+	.animateTitle.visible {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 @media screen and (min-width: 1440px) {
 	.worksItem {

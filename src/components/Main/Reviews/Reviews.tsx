@@ -5,6 +5,7 @@ import Image from "next/image";
 import { db } from "../../../../firebaseConfig";
 import s from "./Reviews.module.css";
 import { useSmoothScroll } from "@/utils/useSmoothScroll";
+import useScrollAnimation from "@/utils/UseScrollAnimation/useScrollAnimation";
 
 type Review = {
 	id: string;
@@ -22,6 +23,18 @@ const Reviews = () => {
 		gap: 1,
 		duration: 500,
 	});
+	const [heroFirstContRef, heroFirstContVisible] = useScrollAnimation() as [
+		React.RefObject<HTMLDivElement>,
+		boolean
+	];
+	const [heroListRef, heroListVisible] = useScrollAnimation() as [
+		React.RefObject<HTMLUListElement>,
+		boolean
+	];
+	const [heroPaginationRef, heroPaginationVisible] = useScrollAnimation() as [
+		React.RefObject<HTMLDivElement>,
+		boolean
+	];
 
 	useEffect(() => {
 		const fetchReviews = async () => {
@@ -46,14 +59,24 @@ const Reviews = () => {
 	return (
 		<div id="reviews" className={`container ${s.section}`}>
 			<div className={s.reviewContainer} ref={containerRef}>
-				<div className={s.firstCont}>
+				<div
+					ref={heroFirstContRef}
+					className={`${s.firstCont} ${s.animateFirstCont} ${
+						heroFirstContVisible ? s.visible : ""
+					}`}
+				>
 					<h3 className={s.title}>Co mówią nasi klienci</h3>
 					<p className={s.text}>
 						Klienci dzielą się swoimi wrażeniami na temat współpracy i
 						uzyskanych rezultatów.
 					</p>
 				</div>
-				<ul className={s.list}>
+				<ul
+					ref={heroListRef}
+					className={`${s.list} ${s.animateList} ${
+						heroListVisible ? s.visible : ""
+					}`}
+				>
 					{reviews.map((r) => (
 						<li key={r.id} className={s.card}>
 							<Image
@@ -83,7 +106,12 @@ const Reviews = () => {
 					))}
 				</ul>
 			</div>
-			<div className={s.mobPagination}>
+			<div
+				ref={heroPaginationRef}
+				className={`${s.mobPagination} ${s.animatePagination} ${
+					heroPaginationVisible ? s.visible : ""
+				}`}
+			>
 				<button
 					type="button"
 					onClick={() => scrollSmooth("left")}
