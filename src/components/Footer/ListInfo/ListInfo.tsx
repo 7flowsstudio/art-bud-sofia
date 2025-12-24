@@ -13,15 +13,21 @@ const ListInfo = () => {
 			<h5 className={s.navigateTitle}>Info</h5>
 			<ul className={s.listInfo}>
 				{listInfo.map((item) => (
-					<li key={item.id}>
+					<li key={item.id} className={s.infoItem}>
 						{item.id === 0 || item.id === 1 ? (
 							<p className={s.infoLink}>{item.name}</p>
 						) : item.id === 2 ? (
-							<a href={`mailto:${item.link}`} className={s.infoLink}>
+							<a
+								href={`mailto:${item.link}`}
+								className={`${s.infoLink} ${s.hoverItem}`}
+							>
 								{item.name}
 							</a>
 						) : (
-							<a href={`tel:${item.link}`} className={s.infoLink}>
+							<a
+								href={`tel:${item.link}`}
+								className={`${s.infoLink} ${s.hoverItem}`}
+							>
 								{item.name}
 							</a>
 						)}

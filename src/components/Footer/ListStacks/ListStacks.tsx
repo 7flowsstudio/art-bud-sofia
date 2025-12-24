@@ -1,6 +1,5 @@
 import React from "react";
 import s from "./ListStacks.module.css";
-import Link from "next/link";
 import { LocalizedScrollButton } from "@/utils/LocalizedScrollButton/LocalizedScrollButton";
 
 const ListStacks = () => {
@@ -31,7 +30,7 @@ const ListStacks = () => {
 			<h5 className={s.navigateTitle}>Stack</h5>
 			<ul className={s.listStack}>
 				{listStacs.map((item) => (
-					<li key={item.id}>
+					<li key={item.id} className={s.stackItem}>
 						<LocalizedScrollButton scrollId={item.link} className={s.stackLink}>
 							{item.name}
 						</LocalizedScrollButton>

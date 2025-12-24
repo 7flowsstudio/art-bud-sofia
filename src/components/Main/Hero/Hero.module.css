@@ -108,6 +108,14 @@
 		max-width: 876px;
 		font-size: 70px;
 	}
+	.btn {
+		transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+			color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+	.btn:hover {
+		background: var(--brand);
+		color: var(--white);
+	}
 }
 @media screen and (min-width: 1440px) {
 	.wrappTitle {
