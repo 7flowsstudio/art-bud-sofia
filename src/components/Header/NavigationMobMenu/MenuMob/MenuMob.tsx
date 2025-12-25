@@ -1,14 +1,20 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import s from "./MenuMob.module.css";
 import mobList from "../../menu.json";
-import Link from "next/link";
+import { LocalizedScrollButton } from "@/utils/LocalizedScrollButton/LocalizedScrollButton";
 
-const MenuMob = () => {
+type MobMenuProp = {
+	hundlerMobMenu: MouseEventHandler;
+};
+
+const MenuMob = ({ hundlerMobMenu }: MobMenuProp) => {
 	return (
 		<ul className={s.mobMenuList}>
 			{mobList.map((item) => (
-				<li key={item.id} className={s.mobMenuItem}>
-					<Link href={item.link}>{item.name}</Link>
+				<li key={item.id} className={s.mobMenuItem} onClick={hundlerMobMenu}>
+					<LocalizedScrollButton scrollId={item.link} className={s.mobMenuItem}>
+						{item.name}
+					</LocalizedScrollButton>
 				</li>
 			))}
 		</ul>
