@@ -135,17 +135,8 @@
 	justify-content: flex-end;
 	margin-top: 40px;
 }
-@media screen and (max-width: 840px) {
-	.contText {
-		min-height: 160px;
-	}
-}
-@media screen and (min-width: 925px) and (max-width: 1025px) {
-	.contText {
-		min-height: 170px;
-	}
-}
-@media screen and (min-width: 1280px) {
+
+@media screen and (min-width: 700px) {
 	.animateList,
 	.animateFirstCont,
 	.animatePagination {
@@ -169,5 +160,15 @@
 	.animatePagination.visible {
 		opacity: 1;
 		transform: translateY(0);
+	}
+}
+@media screen and (max-width: 840px) {
+	.contText {
+		min-height: 160px;
+	}
+}
+@media screen and (min-width: 925px) and (max-width: 1025px) {
+	.contText {
+		min-height: 170px;
 	}
 }

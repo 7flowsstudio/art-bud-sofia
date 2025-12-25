@@ -27,7 +27,7 @@
 	gap: 20px;
 }
 .worksItem {
-	width: 100%;
+	flex: 0 0 100%;
 	max-width: 400px;
 	display: flex;
 	flex-direction: column;
@@ -121,12 +121,29 @@
 	height: 12px;
 	stroke: var(--brand);
 }
+.animateBtnMore,
+.animateTitle {
+	opacity: 0;
+	transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.animateBtnMore {
+	transform: translateY(50px);
+}
+.animateTitle {
+	transform: translateY(-50px);
+}
+.animateBtnMore.visible,
+.animateTitle.visible {
+	opacity: 1;
+	transform: translateY(0);
+}
 @media screen and (min-width: 768px) {
 	.worksList {
 		justify-content: flex-start;
 	}
 	.worksItem {
-		width: calc((100% - 40px) / 3);
+		flex: 0 0 calc((100% - 20px) / 2);
+		max-width: calc((100% - 20px) / 2);
 		height: 490px;
 	}
 	/* .image,
@@ -135,9 +152,10 @@
   } */
 }
 @media screen and (min-width: 1280px) {
-	/* .worksItem {
-    width: calc((100% - 60px) / 4);
-  } */
+	.worksItem {
+		flex: 0 0 calc((100% - 40px) / 3);
+		max-width: calc((100% - 40px) / 3);
+	}
 	.image,
 	.imageWrapper {
 		min-height: 280px;
@@ -156,27 +174,11 @@
 		stroke: var(--white);
 		fill: var(--white);
 	}
-
-	.animateBtnMore,
-	.animateTitle {
-		opacity: 0;
-		transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-	}
-	.animateBtnMore {
-		transform: translateY(50px);
-	}
-	.animateTitle {
-		transform: translateY(-50px);
-	}
-	.animateBtnMore.visible,
-	.animateTitle.visible {
-		opacity: 1;
-		transform: translateY(0);
-	}
 }
 @media screen and (min-width: 1440px) {
 	.worksItem {
-		width: calc((100% - 60px) / 4);
+		flex: 0 0 calc((100% - 60px) / 4);
+		max-width: calc((100% - 60px) / 4);
 	}
 	.image,
 	.imageWrapper {
