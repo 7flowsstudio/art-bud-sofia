@@ -7,13 +7,9 @@ import ContactsGroup from "./ContactsGroup/ContactsGroup";
 
 type NavigationMobProp = {
 	hundlerMobMenu: MouseEventHandler;
-	openMobMenu: boolean;
 };
 
-const NavigationMobMenu: React.FC<NavigationMobProp> = ({
-	hundlerMobMenu,
-	openMobMenu,
-}) => {
+const NavigationMobMenu: React.FC<NavigationMobProp> = ({ hundlerMobMenu }) => {
 	return (
 		<div className={s.mobWrapper}>
 			<div className={s.mobTopBlock}>
@@ -22,7 +18,7 @@ const NavigationMobMenu: React.FC<NavigationMobProp> = ({
 						Close
 					</div>
 				</div>
-				<MenuMob />
+				<MenuMob hundlerMobMenu={hundlerMobMenu} />
 				<ContactsGroup />
 			</div>
 

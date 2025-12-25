@@ -52,10 +52,7 @@ const Header = () => {
 				</div>
 			</div>
 			<div className={`${s.menuHead} ${openMobMenu ? s.open : ""}`}>
-				<NavigationMobMenu
-					hundlerMobMenu={hundlerMobMenu}
-					openMobMenu={openMobMenu}
-				/>
+				<NavigationMobMenu hundlerMobMenu={hundlerMobMenu} />
 			</div>
 		</>
 	);
