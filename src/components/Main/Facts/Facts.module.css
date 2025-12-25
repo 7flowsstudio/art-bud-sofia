@@ -41,6 +41,34 @@
 	font-family: var(--second-family);
 	font-weight: 700;
 }
+
+.animateTitle,
+.animateElementS,
+.animateElementF,
+.animateElementTh {
+	opacity: 0;
+	transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.animateElementS {
+	transform: translateX(50px);
+}
+.animateElementF,
+.animateElementTh {
+	transform: translateX(-50px);
+}
+.animateTitle {
+	transform: translateY(-50px);
+}
+.animateElementF.visible,
+.animateElementS.visible,
+.animateElementTh.visible {
+	opacity: 1;
+	transform: translateX(0);
+}
+.animateTitle.visible {
+	opacity: 1;
+	transform: translateY(0);
+}
 @media screen and (min-width: 786px) and (max-width: 1199px) {
 	.list {
 		padding-left: 100px;
@@ -86,14 +114,6 @@
 	.elementTh span {
 		font-size: 70px;
 	}
-
-	.animateTitle,
-	.animateElementS,
-	.animateElementF,
-	.animateElementTh {
-		opacity: 0;
-		transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-	}
 	.animateElementF {
 		transform: translateX(-50px);
 	}
@@ -103,16 +123,6 @@
 	.animateElementTh {
 		transform: translateX(50px);
 	}
-	.animateTitle {
-		transform: translateY(-50px);
-	}
-	.animateTitle.visible,
-	.animateElementS.visible,
-	.animateElementF.visible,
-	.animateElementTh.visible {
-		opacity: 1;
-	}
-
 	.animateElementF.visible {
 		transform: rotate(5deg);
 	}
@@ -121,8 +131,5 @@
 	}
 	.animateElementTh.visible {
 		transform: rotate(5deg);
-	}
-	.animateTitle.visible {
-		transform: translateY(0);
 	}
 }

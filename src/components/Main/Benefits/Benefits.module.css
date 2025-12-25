@@ -52,6 +52,17 @@
 	font-size: 16px;
 	font-family: var(--font-family);
 }
+.animateTitle {
+	opacity: 0;
+	transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.animateTitle {
+	transform: translateY(-50px);
+}
+.animateTitle.visible {
+	opacity: 1;
+	transform: translateY(0);
+}
 @media screen and (min-width: 768px) {
 	.section {
 		padding-top: 135px;
@@ -84,16 +95,5 @@
 	}
 	.textCard {
 		font-size: 20px;
-	}
-	.animateTitle {
-		opacity: 0;
-		transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-	}
-	.animateTitle {
-		transform: translateY(-50px);
-	}
-	.animateTitle.visible {
-		opacity: 1;
-		transform: translateY(0);
 	}
 }

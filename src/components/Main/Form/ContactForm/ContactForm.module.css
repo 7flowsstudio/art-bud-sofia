@@ -99,6 +99,23 @@
 	letter-spacing: -3%;
 	text-align: left;
 }
+
+.animateTitle,
+.animateForm {
+	opacity: 0;
+	transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.animateForm {
+	transform: translateY(50px);
+}
+.animateTitle {
+	transform: translateY(-50px);
+}
+.animateTitle.visible,
+.animateForm.visible {
+	opacity: 1;
+	transform: translateY(0);
+}
 @media screen and (min-width: 1280px) {
 	.btnSend {
 		transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1),
@@ -109,22 +126,5 @@
 		border: 1px solid var(--brand);
 		background: var(--white);
 		color: var(--brand);
-	}
-
-	.animateTitle,
-	.animateForm {
-		opacity: 0;
-		transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-	}
-	.animateForm {
-		transform: translateY(50px);
-	}
-	.animateTitle {
-		transform: translateY(-50px);
-	}
-	.animateTitle.visible,
-	.animateForm.visible {
-		opacity: 1;
-		transform: translateY(0);
 	}
 }

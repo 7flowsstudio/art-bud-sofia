@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import s from "./Block.module.css";
 import Image from "next/image";
 import Consultation from "@/data/Consultation/Consultation";
+import Portal from "@/components/Portal/Portal";
 
 const Block = () => {
 	const [openModal, setOpenModal] = useState(false);
@@ -33,7 +34,12 @@ const Block = () => {
 					<span className={s.btnDesc}>Uzyskaj konsultację</span>
 				</button>
 			</div>
-			{openModal && <Consultation setOpenModal={setOpenModal} title={title} />}
+			{/* {openModal && <Consultation setOpenModal={setOpenModal} title={title} />} */}
+			{openModal && (
+				<Portal>
+					<Consultation setOpenModal={setOpenModal} title={title} />
+				</Portal>
+			)}
 		</>
 	);
 };
