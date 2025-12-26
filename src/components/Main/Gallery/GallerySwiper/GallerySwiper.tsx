@@ -9,110 +9,110 @@ import { ImageModal } from "./ImageModal/ImageModal";
 import useScrollAnimation from "@/utils/UseScrollAnimation/useScrollAnimation";
 
 const GallerySwiper = () => {
-	const [media, setMedia] = useState<string[]>([]);
-	const [width, setWidth] = useState(0);
-	const [open, setOpen] = useState(false);
-	const [current, setCurrent] = useState<string | null>(null);
-	const containerRef = useRef<HTMLDivElement | null>(null);
-	const { scrollSmooth } = useSmoothScroll(containerRef, {
-		slidesToScroll: 1,
-		gap: 1,
-		duration: 500,
-	});
-	const [heroTitleRef, heroTitleVisible] = useScrollAnimation() as [
-		React.RefObject<HTMLDivElement>,
-		boolean
-	];
-	const [heroPaginationRef, heroPaginationVisible] = useScrollAnimation() as [
-		React.RefObject<HTMLDivElement>,
-		boolean
-	];
+  const [media, setMedia] = useState<string[]>([]);
+  // const [width, setWidth] = useState(0);
+  const [open, setOpen] = useState(false);
+  const [current, setCurrent] = useState<string | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const { scrollSmooth } = useSmoothScroll(containerRef, {
+    slidesToScroll: 1,
+    gap: 1,
+    duration: 500,
+  });
+  const [heroTitleRef, heroTitleVisible] = useScrollAnimation() as [
+    React.RefObject<HTMLDivElement>,
+    boolean
+  ];
+  const [heroPaginationRef, heroPaginationVisible] = useScrollAnimation() as [
+    React.RefObject<HTMLDivElement>,
+    boolean
+  ];
 
-	useEffect(() => {
-		const fetchGallery = async () => {
-			try {
-				const q = query(
-					collection(db, "gallery"),
-					orderBy("createdAt", "desc")
-				);
-				const snapshot = await getDocs(q);
-				const urls = snapshot.docs.map((doc) => doc.data().imageUrl);
-				setMedia(urls);
-			} catch (err) {
-				console.error("Error fetching gallery:", err);
-			}
-		};
-		fetchGallery();
-	}, []);
+  useEffect(() => {
+    const fetchGallery = async () => {
+      try {
+        const q = query(
+          collection(db, "gallery"),
+          orderBy("createdAt", "desc")
+        );
+        const snapshot = await getDocs(q);
+        const urls = snapshot.docs.map((doc) => doc.data().imageUrl);
+        setMedia(urls);
+      } catch (err) {
+        console.error("Error fetching gallery:", err);
+      }
+    };
+    fetchGallery();
+  }, []);
 
-	const widths = ["slide25", "slide30", "slide45"];
+  const widths = ["slide25", "slide30", "slide45"];
 
-	return (
-		<div id="SliderGallery" className={s.gallerySwiper}>
-			<div className={`container ${s.sliderContainer}`}>
-				<div className={s.headBlock}>
-					<h2
-						ref={heroTitleRef}
-						className={`${s.title} ${s.animateTitle} ${
-							heroTitleVisible ? s.visible : ""
-						}`}
-					>
-						Galeria prac
-					</h2>
+  return (
+    <div id="SliderGallery" className={s.gallerySwiper}>
+      <div className={`container ${s.sliderContainer}`}>
+        <div className={s.headBlock}>
+          <h2
+            ref={heroTitleRef}
+            className={`${s.title} ${s.animateTitle} ${
+              heroTitleVisible ? s.visible : ""
+            }`}
+          >
+            Galeria prac
+          </h2>
 
-					<div
-						ref={heroPaginationRef}
-						className={`${s.mobPagination} ${s.animatePagination} ${
-							heroPaginationVisible ? s.visible : ""
-						}`}
-					>
-						<button
-							type="button"
-							onClick={() => scrollSmooth("left")}
-							className={`gallery-prev ${s.navButton}`}
-						>
-							<svg className={s.navButton_icon}>
-								<use href="/sprite.svg#icon-btn-on-top" />
-							</svg>
-						</button>
-						<button
-							type="button"
-							onClick={() => scrollSmooth("right")}
-							className={`gallery-next ${s.navButton}`}
-						>
-							<svg className={`${s.navButton_icon} ${s.right}`}>
-								<use href="/sprite.svg#icon-btn-on-top" />
-							</svg>
-						</button>
-					</div>
-				</div>
+          <div
+            ref={heroPaginationRef}
+            className={`${s.mobPagination} ${s.animatePagination} ${
+              heroPaginationVisible ? s.visible : ""
+            }`}
+          >
+            <button
+              type="button"
+              onClick={() => scrollSmooth("left")}
+              className={`gallery-prev ${s.navButton}`}
+            >
+              <svg className={s.navButton_icon}>
+                <use href="/sprite.svg#icon-btn-on-top" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={() => scrollSmooth("right")}
+              className={`gallery-next ${s.navButton}`}
+            >
+              <svg className={`${s.navButton_icon} ${s.right}`}>
+                <use href="/sprite.svg#icon-btn-on-top" />
+              </svg>
+            </button>
+          </div>
+        </div>
 
-				<div className={s.galleryContainer} ref={containerRef}>
-					{media.map((item, index) => (
-						<div
-							key={item}
-							className={`${s.slideWrapper} ${s[widths[index % 3]]}`}
-							onClick={() => {
-								setCurrent(item);
-								setOpen(true);
-							}}
-						>
-							<Image
-								src={item}
-								alt="article"
-								fill
-								className={s.image}
-								sizes="(max-width: 768px) 100vw, auto"
-							/>
-						</div>
-					))}
-				</div>
-			</div>
-			{open && current && (
-				<ImageModal src={current} onClose={() => setOpen(false)} />
-			)}
-		</div>
-	);
+        <div className={s.galleryContainer} ref={containerRef}>
+          {media.map((item, index) => (
+            <div
+              key={item}
+              className={`${s.slideWrapper} ${s[widths[index % 3]]}`}
+              onClick={() => {
+                setCurrent(item);
+                setOpen(true);
+              }}
+            >
+              <Image
+                src={item}
+                alt="article"
+                fill
+                className={s.image}
+                sizes="(max-width: 768px) 100vw, auto"
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      {open && current && (
+        <ImageModal src={current} onClose={() => setOpen(false)} />
+      )}
+    </div>
+  );
 };
 
 export default GallerySwiper;
