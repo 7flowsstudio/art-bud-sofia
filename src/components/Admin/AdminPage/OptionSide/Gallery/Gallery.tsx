@@ -13,6 +13,7 @@ import {
 import axios from "axios";
 import Image from "next/image";
 import s from "./Gallery.module.css";
+import Resizer from "react-image-file-resizer";
 import { db } from "../../../../../../firebaseConfig";
 
 type GalleryItem = {
@@ -43,14 +44,30 @@ const Gallery = () => {
     fetchGallery();
   }, []);
 
+  const resizeFile = (file: File): Promise<File> =>
+    new Promise((resolve) => {
+      Resizer.imageFileResizer(
+        file,
+        1200, // max ширина
+        1200, // max висота
+        "JPEG", // формат
+        80, // якість %
+        0, // поворот
+        (uri) => resolve(uri as File),
+        "file"
+      );
+    });
+
   const upload = async () => {
     if (!file) return;
 
     try {
       setLoading(true);
 
+      const resizedFile = await resizeFile(file);
+
       const formData = new FormData();
-      formData.append("file", file);
+      formData.append("file", resizedFile);
 
       const { data } = await axios.post("/api/upload", formData);
 
