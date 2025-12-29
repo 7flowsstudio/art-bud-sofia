@@ -46,6 +46,7 @@
   display: flex;
   justify-content: center;
   font-family: var(--font-family);
+  cursor: pointer;
 }
 .btnUpl {
   font-size: 16px;
