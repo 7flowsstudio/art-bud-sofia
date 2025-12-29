@@ -30,6 +30,7 @@ export default function Reviews() {
   const [city, setCity] = useState("");
   const [text, setText] = useState("");
   const [reviews, setReviews] = useState<Review[]>([]);
+  const [preview, setPreview] = useState<string | null>(null);
 
   const fetchReviews = async () => {
     const q = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
@@ -64,6 +65,7 @@ export default function Reviews() {
     setCity("");
     setText("");
     fetchReviews();
+    setPreview(null);
   };
 
   const remove = async (id: string) => {
@@ -85,13 +87,20 @@ export default function Reviews() {
         <div className={s.wrappTable}>
           <div className={`${s.row} ${s.addRow}`}>
             <label className={s.button}>
-              + Додати фото
+              {preview ? (
+                <Image src={preview} alt="preview" width={48} height={48} />
+              ) : (
+                "+ Додати фото"
+              )}
+
               <input
                 type="file"
                 hidden
                 onChange={(e) => {
-                  if (e.target.files?.[0]) {
-                    setFile(e.target.files[0]);
+                  const f = e.target.files?.[0];
+                  if (f) {
+                    setFile(f);
+                    setPreview(URL.createObjectURL(f));
                   }
                 }}
               />
@@ -124,6 +133,7 @@ export default function Reviews() {
           {reviews.map((r) => (
             <div key={r.id} className={s.row}>
               <Image src={r.imageUrl} alt="" width={48} height={48} />
+
               <p>{r.author}</p>
               <p>{r.city}</p>
               <p className={s.review}>{r.text}</p>

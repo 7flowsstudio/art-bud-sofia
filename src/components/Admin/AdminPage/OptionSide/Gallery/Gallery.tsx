@@ -25,6 +25,7 @@ const Gallery = () => {
   const [file, setFile] = useState<File | null>(null);
   const [gallery, setGallery] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(false);
+  const [preview, setPreview] = useState<string | null>(null);
 
   const fetchGallery = async () => {
     const q = query(collection(db, "gallery"), orderBy("createdAt", "desc"));
@@ -60,6 +61,7 @@ const Gallery = () => {
 
       setFile(null);
       fetchGallery();
+      setPreview(null);
     } catch (error) {
       console.error("Upload error:", error);
       alert("Помилка завантаження");
@@ -84,13 +86,19 @@ const Gallery = () => {
       <div className={s.wrappContF}>
         <div className={s.wrapp}>
           <label className={s.button}>
-            + Додати нове фото
+            {preview ? (
+              <Image src={preview} alt="preview" width={48} height={48} />
+            ) : (
+              "+ Додати нове фото"
+            )}
             <input
               type="file"
               hidden
               onChange={(e) => {
-                if (e.target.files?.[0]) {
-                  setFile(e.target.files[0]);
+                const f = e.target.files?.[0];
+                if (f) {
+                  setFile(f);
+                  setPreview(URL.createObjectURL(f));
                 }
               }}
             />

@@ -25,6 +25,7 @@ export default function Services() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [services, setServices] = useState<Service[]>([]);
+  const [preview, setPreview] = useState<string | null>(null);
 
   const fetchServices = async () => {
     const snap = await getDocs(collection(db, "services"));
@@ -55,6 +56,7 @@ export default function Services() {
     setTitle("");
     setDescription("");
     fetchServices();
+    setPreview(null);
   };
 
   const remove = async (id: string) => {
@@ -75,13 +77,19 @@ export default function Services() {
         <div className={s.wrappTable}>
           <div className={`${s.row} ${s.addRow}`}>
             <label className={s.button}>
-              + Додати фото
+              {preview ? (
+                <Image src={preview} alt="preview" width={48} height={48} />
+              ) : (
+                "+ Додати фото"
+              )}
               <input
                 type="file"
                 hidden
                 onChange={(e) => {
-                  if (e.target.files?.[0]) {
-                    setFile(e.target.files[0]);
+                  const f = e.target.files?.[0];
+                  if (f) {
+                    setFile(f);
+                    setPreview(URL.createObjectURL(f));
                   }
                 }}
               />
