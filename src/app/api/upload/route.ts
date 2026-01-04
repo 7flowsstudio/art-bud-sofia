@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
-import fs from "fs";
-import path from "path";
-import { writeFile } from "fs/promises";
 import cloudinary from "@/utils/cloudinary";
+import { UploadApiResponse } from "cloudinary";
+
+export const runtime = "nodejs";
 
 export const POST = async (req: Request) => {
   try {
@@ -13,21 +13,21 @@ export const POST = async (req: Request) => {
       return NextResponse.json({ error: "No file provided" }, { status: 400 });
     }
 
-    // Створюємо папку uploads у корені проєкту
-    const uploadDir = path.join(process.cwd(), "uploads");
-    if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
 
-    // Зберігаємо файл тимчасово
-    const tempPath = path.join(uploadDir, file.name);
-    const bytes = await file.arrayBuffer();
-    await writeFile(tempPath, Buffer.from(bytes));
-
-    const result = await cloudinary.uploader.upload(tempPath, {
-      folder: "gallery",
+    const result: UploadApiResponse = await new Promise((resolve, reject) => {
+      const stream = cloudinary.uploader.upload_stream(
+        { folder: "gallery" },
+        (error, result) => {
+          if (error) return reject(error);
+          if (!result)
+            return reject(new Error("Cloudinary returned undefined"));
+          resolve(result);
+        }
+      );
+      stream.end(buffer);
     });
-
-    // Видаляємо тимчасовий файл
-    fs.unlinkSync(tempPath);
 
     return NextResponse.json({ url: result.secure_url });
   } catch (err: unknown) {
@@ -36,3 +36,42 @@ export const POST = async (req: Request) => {
     return NextResponse.json({ error: message }, { status: 500 });
   }
 };
+
+// import { NextResponse } from "next/server";
+// import fs from "fs";
+// import path from "path";
+// import { writeFile } from "fs/promises";
+// import cloudinary from "@/utils/cloudinary";
+
+// export const POST = async (req: Request) => {
+//   try {
+//     const formData = await req.formData();
+//     const file = formData.get("file") as File | null;
+
+//     if (!file) {
+//       return NextResponse.json({ error: "No file provided" }, { status: 400 });
+//     }
+
+//     // Створюємо папку uploads у корені проєкту
+//     const uploadDir = path.join(process.cwd(), "uploads");
+//     if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
+
+//     // Зберігаємо файл тимчасово
+//     const tempPath = path.join(uploadDir, file.name);
+//     const bytes = await file.arrayBuffer();
+//     await writeFile(tempPath, Buffer.from(bytes));
+
+//     const result = await cloudinary.uploader.upload(tempPath, {
+//       folder: "gallery",
+//     });
+
+//     // Видаляємо тимчасовий файл
+//     fs.unlinkSync(tempPath);
+
+//     return NextResponse.json({ url: result.secure_url });
+//   } catch (err: unknown) {
+//     const message = err instanceof Error ? err.message : String(err);
+//     console.error("Upload error:", message);
+//     return NextResponse.json({ error: message }, { status: 500 });
+//   }
+// };
